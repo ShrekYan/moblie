@@ -1,13 +1,12 @@
 import React, {useState} from 'react'
 import reactLogo from './../../assets/react.svg'
-import viteLogo from '/vite.svg'
+import viteLogo from './../../../public/vite.svg'
 import classnames from 'classnames'
 import styles from './index.module.scss'
 
-
 const Home: React.FC = () => {
     const [count, setCount] = useState(0);
-
+    console.log(import.meta.env);
     return (
         <>
             <div>

@@ -3,6 +3,7 @@ import postCssAutoprefixer from 'autoprefixer'
 import postPresetEnv from 'postcss-preset-env'
 import postInitial  from 'postcss-initial'
 import postcssColorFunctionalNotation from 'postcss-color-functional-notation'
+import fixes from 'postcss-flexbugs-fixes'
 
 
 export default {
@@ -14,11 +15,12 @@ export default {
             viewportUnit: 'vw',
             minPixelValue: 1
         }),
-        postCssAutoprefixer,
+        postCssAutoprefixer(),
         postPresetEnv(),
         postInitial({
             reset:'inherited'
         }),
         postcssColorFunctionalNotation(),
+        fixes()
     ]
 }
