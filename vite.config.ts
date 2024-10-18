@@ -2,6 +2,7 @@ import {defineConfig} from 'vite'
 import react from '@vitejs/plugin-react'
 import legacy from '@vitejs/plugin-legacy'
 import {visualizer} from 'rollup-plugin-visualizer'
+import path from 'path'
 //图片转成base64
 //import image from '@rollup/plugin-image'
 
@@ -9,7 +10,11 @@ import {visualizer} from 'rollup-plugin-visualizer'
 export default defineConfig({
     root: process.cwd(),
     base: '/',
-    envDir:'./env',
+    envDir: './env',
+    //定义全局变量
+    define: {},
+    publicDir: 'public',
+    cacheDir: 'node_modules/.vite',
     plugins: [
         // {
         //     ...image(),
@@ -22,7 +27,7 @@ export default defineConfig({
                 filename: './dist/stats.html',
                 open: false
             }),
-            apply:'build'
+            apply: 'build'
         }
     ],
     css: {
@@ -36,6 +41,11 @@ export default defineConfig({
         modules: {
             scopeBehaviour: 'local',
             localsConvention: 'camelCaseOnly'
+        }
+    },
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, './src/')
         }
     }
 })
