@@ -3,6 +3,7 @@ import legacy from "@vitejs/plugin-legacy";
 import {visualizer} from "rollup-plugin-visualizer";
 import path from "path";
 import type {UserConfig} from "vite";
+import  removeConsole from 'vite-plugin-remove-console'
 
 export default {
     root: process.cwd(),
@@ -18,6 +19,7 @@ export default {
         // },
         react(),
         legacy(),
+        removeConsole(),
         {
             ...visualizer({
                 filename: './dist/stats.html',

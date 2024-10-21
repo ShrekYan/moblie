@@ -1,6 +1,7 @@
 import react from "@vitejs/plugin-react";
 import legacy from "@vitejs/plugin-legacy";
 import path from "path";
+import { viteVConsole } from 'vite-plugin-vconsole';
 import type {UserConfig} from "vite";
 
 export default {
@@ -16,11 +17,18 @@ export default {
         //     enforce: 'pre'
         // },
         react(),
-        legacy()
+        legacy(),
+        viteVConsole({
+            entry:path.resolve(__dirname,'./src/main.tsx'),
+            enabled: true,
+            config:{
+                theme: 'dark'
+            }
+        })
     ],
     resolve: {
         alias: {
-            '@': path.resolve(__dirname, './src/')
+            '@': path.resolve(__dirname, './src/main.tsx')
         },
         extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
     },
