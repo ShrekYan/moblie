@@ -2,11 +2,12 @@
 
 //font相关
 //------------------------------------------------
-$font-family: PingFang-SC-Bold, PingFang-SC;
-$font-family-din: DINAlternate;
-$font-family-din-bold: DINAlternate-Bold, DINAlternate;
+$font-family: pingfang-sc-bold, pingfang-sc;
+$font-family-din: dinalternate;
+$font-family-din-bold: dinalternate-bold, dinalternate;
+
 //字体图标
-$font-family-Ionicons: Ionicons;
+$font-family-Ionicons: ionicons;
 
 //品牌色 一般用于logo、按钮
 //-----------------------------------------------------
@@ -20,20 +21,20 @@ $logoColor5: #FD7753;
 //-----------------------------------------------------
 $fillBody: #f5f7f9;
 $black: #000;
-$white: #ffffff; //白色
+$white: #fff; //白色
 $orange: #FC6047; //金额数字、说明、标签
 $blue: #659ee5; //链接文字、标签
 $green: #3fb17f; //负值文字色值
 $yellow: #fdfcec; //小黄条提示背景
 $gray: #ccc; //输入框占位符颜色
-$grayDark: #999999; //小文本灰色
-$lightGrayDark: #666666; //小文本灰色
+$grayDark: #999; //小文本灰色
+$lightGrayDark: #666; //小文本灰色
 $fontCol: #434343; //正文文字颜色
-$fontColDark: #333333; //正文文字颜色
+$fontColDark: #333; //正文文字颜色
 $bodyBgColor: #f7f6f9; //页面背景色
 $borderCol: #f5f5f5; //常用边框颜色
-$lightBorderCol: #dddddd; //分割线色、不可点击按钮
-$buttonActive:#ed3901;
+$lightBorderCol: #ddd; //分割线色、不可点击按钮
+$buttonActive: #ed3901;
 $lightOrange: #fcf4f0;
 $lightOrange1: #fd9253;
 
@@ -53,7 +54,7 @@ $z-indexLow: 10;
 
 // 饼图颜色顺序
 //-----------------------------------------------------
-$pieColor0: #FF7777;
+$pieColor0: #F77;
 $pieColor1: #83B1FD;
 $pieColor2: #FFAD0E;
 $pieColor3: #FF8237;

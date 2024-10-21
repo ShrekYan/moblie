@@ -3,7 +3,11 @@ import legacy from "@vitejs/plugin-legacy";
 import {visualizer} from "rollup-plugin-visualizer";
 import path from "path";
 import type {UserConfig} from "vite";
-import  removeConsole from 'vite-plugin-remove-console'
+import removeConsole from 'vite-plugin-remove-console'
+//import checker from 'vite-plugin-checker'
+//gzip
+//import { compression } from 'vite-plugin-compression2'
+//import cdn from 'vite-plugin-cdn-import'
 
 export default {
     root: process.cwd(),
@@ -13,10 +17,27 @@ export default {
     publicDir: 'public',
     cacheDir: 'node_modules/.vite',
     plugins: [
-        // {
-        //     ...image(),
-        //     enforce: 'pre'
-        // },
+        //可以通过nginx配置GZIP
+        /*     compression(),*/
+        /*   cdn({
+               modules:[
+                   {
+                       name:'react',
+                       var:'React',
+                       path:'https://cdn.bootcdn.net/ajax/libs/react/18.3.1/umd/react.production.min.js'
+                   }
+               ]
+           }),
+           */
+
+        /*    {
+                ...image(),
+                enforce: 'pre'
+            },*/
+
+        /*  checker({
+              typescript:true
+          }),*/
         react(),
         legacy(),
         removeConsole(),
