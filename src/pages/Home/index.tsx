@@ -7,11 +7,6 @@ import styles from './index.module.scss'
 const Home: React.FC = () => {
     const [count, setCount] = useState<number>(0);
 
-
-    if(true){
-
-    }
-
     return (
         <>
             <div>
