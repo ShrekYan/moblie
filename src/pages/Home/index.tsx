@@ -6,7 +6,6 @@ import styles from './index.module.scss'
 
 const Home: React.FC = () => {
     const [count, setCount] = useState(0);
-    console.log(import.meta.env);
     return (
         <>
             <div>
