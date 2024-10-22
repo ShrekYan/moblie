@@ -15,9 +15,9 @@
     "sit-build": "vite build --mode sit",
     "pre-build": "vite build --mode pre",
     "build": "tsc -b && vite build",
-    "lint": "npx lint-staged",
+    "lint": "npx lint-staged --allow-empty",
     "preview": "vite preview",
-    "prepare": "husky"
+    "prepare": "husky install"
   },
   "dependencies": {
     "classnames": "^2.5.1",
@@ -36,6 +36,8 @@
     "@vitejs/plugin-react": "^4.3.2",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.11.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.12",
     "globals": "^15.9.0",
@@ -48,6 +50,7 @@
     "postcss-initial": "^3.0.4",
     "postcss-preset-env": "^10.0.7",
     "postcss-px-to-viewport-8-plugin": "^1.2.5",
+    "prettier": "^3.3.3",
     "rollup-plugin-visualizer": "^5.12.0",
     "sass": "~1.32.13",
     "stylelint": "^16.10.0",
@@ -69,7 +72,7 @@
   ],
   "lint-staged": {
     "*.{ts,tsx}": [
-      "eslint"
+      "eslint --fix"
     ],
     "*.{css,scss}": [
       "stylelint --fix"
