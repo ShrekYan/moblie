@@ -4,6 +4,7 @@ import viteLogo from "./../../../public/vite.svg";
 import classnames from "classnames";
 import styles from "./index.module.scss";
 import http from "./../../service/http/index.ts";
+import { Button } from "antd-mobile/2x";
 
 const Home: React.FC = () => {
     const [count, setCount] = useState<number>(0);
@@ -51,6 +52,7 @@ const Home: React.FC = () => {
                 </p>
             </div>
             <p className={styles.readTheDocs}>Click on the Vite and React logos to learn more</p>
+            <Button>Text</Button>
         </>
     );
 };
