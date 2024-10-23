@@ -6,6 +6,7 @@ import tseslint from "typescript-eslint";
 //import prettier from "eslint-config-prettier";
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 
+const specialRule = "off";
 export default tseslint.config(
     { ignores: ["dist", "vite.prd.config.ts", "vite.dev.config.ts", "vite.config.ts"] },
     {
@@ -26,7 +27,9 @@ export default tseslint.config(
             "react-refresh/only-export-components": [
                 "warn",
                 { allowConstantExport: true }
-            ]
+            ],
+            "@typescript-eslint/no-unsafe-function-type": "off",
+            "@typescript-eslint/ban-ts-comment":"off"
         }
     }
 );
