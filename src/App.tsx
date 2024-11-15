@@ -1,8 +1,12 @@
-import { RouterProvider } from "react-router-dom";
-import router from "./routes";
+import { HashRouter } from "react-router-dom";
+import RouteList from "./routes/index.tsx";
 
 function App() {
-    return <RouterProvider router={router} />;
+    return (
+        <HashRouter>
+            <RouteList />
+        </HashRouter>
+    );
 }
 
 export default App;

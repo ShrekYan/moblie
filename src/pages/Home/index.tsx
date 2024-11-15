@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import reactLogo from "./../../assets/react.svg";
 import viteLogo from "./../../../public/vite.svg";
 import classnames from "classnames";
 import styles from "./index.module.scss";
 import http from "./../../service/http/index.ts";
-import { Button } from "antd-mobile/2x";
+// import { Button } from "antd-mobile/2x";
 
 const Home: React.FC = () => {
-    const [count, setCount] = useState<number>(0);
+    // const [count, setCount] = useState<number>(0);
 
     useEffect(() => {
         http.post(
@@ -18,16 +18,12 @@ const Home: React.FC = () => {
             {
                 customUrl: true
             }
-        ).then((data) => {
-            console.log(data.data);
-        });
+        ).then(() => {});
         http.get("https://mobile.qiangungun.com/v1/wxconfig", {
             params: {
                 url: encodeURIComponent(window.location.href.split("#")[0])
             }
-        }).then((data) => {
-            console.log(data);
-        });
+        }).then(() => {});
     }, []);
 
     return (
@@ -46,13 +42,12 @@ const Home: React.FC = () => {
             </div>
             <h1>Vite + React</h1>
             <div className={styles.card}>
-                <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
+                {/*<button onClick={() => setCount((count) => count + 1)}>count is {count}</button>*/}
                 <p className={styles.pTest}>
                     Edit <code>src/App.tsx</code> and save to test HMR
                 </p>
             </div>
             <p className={styles.readTheDocs}>Click on the Vite and React logos to learn more</p>
-            <Button>Text</Button>
         </>
     );
 };
