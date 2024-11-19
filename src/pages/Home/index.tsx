@@ -8,6 +8,8 @@ import http from "./../../service/http/index.ts";
 
 const Home: React.FC = () => {
     // const [count, setCount] = useState<number>(0);
+    // const data = useLoaderData();
+    // console.log(data);
 
     useEffect(() => {
         http.post(

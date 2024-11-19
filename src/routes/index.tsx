@@ -1,38 +1,51 @@
 import React from "react";
-// import loadable from "react-loadable";
-import { Route, Routes } from "react-router-dom";
-// import { KeepAlive } from "react-activation";
-//import Home from "./../pages/Home";
-// import Mobx from "./../pages/Mobx";
+import { useRoutes } from "react-router-dom";
+//Navigate
+// import KeepAlive from "react-activation";
+// import PageLoading from "./PageLoading.tsx";
+import CacheRoute from "./CacheRoute.tsx";
+import AuthComponent from "./AuthComponent.tsx";
+import AutoLogin from "./AutoLogin.tsx";
 
 const routerConfigList = [
     {
         path: "/",
-        element: React.lazy(() => import("./../pages/Home/index.tsx"))
+        //element: <Navigate to="/home" replace />
+        component: React.lazy(() => import("./../pages/Home/index.tsx"))
+    },
+    {
+        path: "/home",
+        component: React.lazy(() => import("./../pages/Home/index.tsx")),
+        cache: true
+    },
+    {
+        path: "/mobx",
+        component: React.lazy(() => import("./../pages/Mobx/index.tsx")),
+        cache: true
+    },
+    {
+        path: "*",
+        component: React.lazy(() => import("./../pages/Home/index.tsx"))
     }
 ];
 
-const Loading = () => {
-    return <div>Loading</div>;
+const generateRouter = (routes: any) => {
+    return routes.map((item: any) => {
+        console.log("for");
+        if (item.children) {
+            item.children = generateRouter(item.children);
+        }
+        item.element = (
+            <AuthComponent routeConfig={item} component={<CacheRoute routeItemConfig={item} />} />
+        );
+        return item;
+    });
 };
 
+// export default createHashRouter(generateRouter(routerConfigList));
+
 export default () => {
-    return (
-        <Routes>
-            {routerConfigList.map((routeItem, index) => {
-                const AsyncLoadComponent = routeItem.element;
-                return (
-                    <Route
-                        key={index}
-                        path={routeItem.path}
-                        element={
-                            <React.Suspense fallback={<Loading />}>
-                                <AsyncLoadComponent />
-                            </React.Suspense>
-                        }
-                    />
-                );
-            })}
-        </Routes>
-    );
+    //生成RouteList
+    const RouteList = useRoutes(generateRouter(routerConfigList));
+    return <AutoLogin RouteList={RouteList} />;
 };

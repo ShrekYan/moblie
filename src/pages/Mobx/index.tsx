@@ -8,7 +8,7 @@ import useStore from "./useStore.ts";
  */
 const Mobx: React.FC = () => {
     const store = useStore();
-    
+
     return useObserver(() => {
         return (
             <h1 onClick={store.toggle}>

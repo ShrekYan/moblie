@@ -28,7 +28,8 @@ export default tseslint.config(
                 "warn",
                 { allowConstantExport: true }
             ],
-            "@typescript-eslint/no-unsafe-function-type": "off"
+            "@typescript-eslint/no-unsafe-function-type": "off",
+            "@typescript-eslint/no-explicit-any":"off"
         }
     }
 );
