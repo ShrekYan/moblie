@@ -8,11 +8,11 @@ import AuthComponent from "./AuthComponent.tsx";
 import AutoLogin from "./AutoLogin.tsx";
 
 const routerConfigList = [
-    {
-        path: "/",
-        //element: <Navigate to="/home" replace />
-        component: React.lazy(() => import("./../pages/Home/index.tsx"))
-    },
+    // {
+    //     path: "/",
+    //     element: <Navigate to="/home" replace />
+    //     // component: React.lazy(() => import("./../pages/Home/index.tsx")),
+    // },
     {
         path: "/home",
         component: React.lazy(() => import("./../pages/Home/index.tsx")),
@@ -31,7 +31,6 @@ const routerConfigList = [
 
 const generateRouter = (routes: any) => {
     return routes.map((item: any) => {
-        console.log("for");
         if (item.children) {
             item.children = generateRouter(item.children);
         }
@@ -41,8 +40,6 @@ const generateRouter = (routes: any) => {
         return item;
     });
 };
-
-// export default createHashRouter(generateRouter(routerConfigList));
 
 export default () => {
     //生成RouteList

@@ -51,3 +51,7 @@ export default tseslint.config({
 
 ### esbuild
 https://esbuild.bootcss.com/
+
+### 升级
+* vite->v6
+* react->v19

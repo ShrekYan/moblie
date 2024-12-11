@@ -29,6 +29,7 @@ export default tseslint.config(
                 { allowConstantExport: true }
             ],
             "@typescript-eslint/no-unsafe-function-type": "off",
+            //todo 暂时先添加any，后续需要删除
             "@typescript-eslint/no-explicit-any":"off"
         }
     }
