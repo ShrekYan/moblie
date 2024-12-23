@@ -1,4 +1,5 @@
 
+
 :global {
   #root {
     max-width: 1280px;
@@ -43,6 +44,7 @@
 
 .card {
   padding: 30px;
+  background:$logoColor1;
 
   .p-Test{
     font-size: 30px;
@@ -52,4 +54,6 @@
 .read-the-docs {
   color: #888;
 }
+
+
 
