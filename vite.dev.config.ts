@@ -7,8 +7,12 @@ import type {UserConfig} from "vite";
 export default {
     root: process.cwd(),
     base: '/',
+    mode: "development",
     //定义全局变量
-    define: {},
+    define: {
+        //todo
+        'window.VITE_API_URL': JSON.stringify('https://api.example.com')
+    },
     publicDir: 'public',
     cacheDir: 'node_modules/.vite',
     plugins: [
@@ -28,7 +32,7 @@ export default {
     ],
     resolve: {
         alias: {
-            '@': path.resolve(__dirname, './src/main.tsx')
+            '@': path.resolve(__dirname, './src/')
         },
         extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
     },
@@ -43,11 +47,14 @@ export default {
         modules: {
             scopeBehaviour: 'local',
             localsConvention: 'camelCaseOnly'
-        }
+        },
+        devSourcemap:false,
+        transformer:'postcss',
+        preprocessorMaxWorkers:0
     },
     json: {
         namedExports: true,
-        stringify: false
+        stringify: 'auto'
     },
     logLevel: 'info',
     clearScreen: true,
@@ -56,6 +63,7 @@ export default {
     server: {
         port: 8888
     },
+    appType:'spa',
     build: {
         target: 'modules',
         modulePreload: true,
@@ -66,9 +74,9 @@ export default {
         sourcemap: false,
         manifest: false,
         minify: 'esbuild',
-
         write: true,
         emptyOutDir: true,
-        chunkSizeWarningLimit: 500
+        chunkSizeWarningLimit: 500,
+        copyPublicDir:true
     }
 } as UserConfig;

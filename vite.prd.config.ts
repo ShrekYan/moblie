@@ -1,9 +1,9 @@
 import react from "@vitejs/plugin-react";
 import legacy from "@vitejs/plugin-legacy";
-import {visualizer} from "rollup-plugin-visualizer";
+import { visualizer } from "rollup-plugin-visualizer";
 import path from "path";
-import type {UserConfig} from "vite";
-import removeConsole from 'vite-plugin-remove-console'
+import type { UserConfig } from "vite";
+import removeConsole from "vite-plugin-remove-console";
 //import checker from 'vite-plugin-checker'
 //gzip
 //import { compression } from 'vite-plugin-compression2'
@@ -11,11 +11,15 @@ import removeConsole from 'vite-plugin-remove-console'
 
 export default {
     root: process.cwd(),
-    base: '/',
+    base: "/",
+    mode: "production",
     //定义全局变量
-    define: {},
-    publicDir: 'public',
-    cacheDir: 'node_modules/.vite',
+    define: {
+        //todo
+        "window.VITE_API_URL": JSON.stringify("https://api.example.com")
+    },
+    publicDir: "public",
+    cacheDir: "node_modules/.vite",
     plugins: [
         //可以通过nginx配置GZIP
         /*     compression(),*/
@@ -43,55 +47,66 @@ export default {
         removeConsole(),
         {
             ...visualizer({
-                filename: './dist/stats.html',
+                filename: "./dist/stats.html",
                 open: false
             }),
-            apply: 'build'
+            apply: "build"
         }
     ],
     resolve: {
         alias: {
-            '@': path.resolve(__dirname, './src/')
+            "@": path.resolve(__dirname, "./src/")
         },
-        extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
+        extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json"]
     },
     css: {
         preprocessorOptions: {
             scss: {
                 additionalData: `
-                         @import "./src/styles/variables.scss"; 
-                         @import "./src/styles/mixin.scss";`,
+                         @import "/src/styles/variables.scss"; 
+                         @import "/src/styles/mixin.scss";`
             }
         },
         modules: {
-            scopeBehaviour: 'local',
-            localsConvention: 'camelCaseOnly'
-        }
+            scopeBehaviour: "local",
+            localsConvention: "camelCaseOnly"
+        },
+        devSourcemap: false,
+        transformer: "postcss",
+        preprocessorMaxWorkers: 0
     },
     json: {
         namedExports: true,
-        stringify: false
+        stringify: "auto"
     },
-    logLevel: 'info',
+    logLevel: "info",
     clearScreen: true,
-    envDir: './env',
-    envPrefix: 'VITE_',
+    envDir: "./env",
+    envPrefix: "VITE_",
+    appType: "spa",
     server: {
         port: 8888
     },
     build: {
-        target: 'modules',
+        target: "modules",
         modulePreload: true,
-        outDir: './dist',
-        assetsDir: './assets',
+        outDir: "./dist",
+        assetsDir: "./assets",
         assetsInlineLimit: 4096, //(4kb)
         cssCodeSplit: true,
         sourcemap: false,
         manifest: false,
-        minify: 'esbuild',
-
+        minify: false,
         write: true,
         emptyOutDir: true,
-        chunkSizeWarningLimit: 500
+        chunkSizeWarningLimit: 500,
+        copyPublicDir:true
+        // terserOptions: {
+        //     compress: {
+        //         drop_console: true,
+        //         drop_debugger: true
+        //     },
+        //     mangle: true
+        // }
     }
 } as UserConfig;

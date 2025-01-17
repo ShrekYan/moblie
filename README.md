@@ -53,5 +53,7 @@ export default tseslint.config({
 https://esbuild.bootcss.com/
 
 ### 升级
-* vite->v6
-* react->v19
+* ~~* vite->v6~~
+* ~~* react->v19~~
+* pnpm 需要升级到9.15
+![img_1.png](img_1.png)
