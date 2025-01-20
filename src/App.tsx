@@ -1,16 +1,17 @@
 import { HashRouter } from "react-router-dom";
 import { AliveScope } from "react-activation";
 import RouteList from "./routes/index.tsx";
+import ErrorBoundary from "./components/common/ErrorBoundary";
 
 function App() {
-    console.log(import.meta.env);
-    console.log(import.meta);
     return (
-        <HashRouter>
-            <AliveScope>
-                <RouteList />
-            </AliveScope>
-        </HashRouter>
+        <ErrorBoundary>
+            <HashRouter>
+                <AliveScope>
+                    <RouteList />
+                </AliveScope>
+            </HashRouter>
+        </ErrorBoundary>
     );
     // return <RouterProvider router={RouteList} />;
 }
