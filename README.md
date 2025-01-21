@@ -57,3 +57,4 @@ https://esbuild.bootcss.com/
 * ~~* react->v19~~
 * pnpm 需要升级到9.15
 ![img_1.png](img_1.png)
+* 打包编译速度

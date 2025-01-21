@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ErrorBoundary as ErrorBoundaryComponent } from "react-error-boundary";
 import type { FallbackProps } from "react-error-boundary";
 import errorBodyImage from "./images/bg-errorBody.jpg";
@@ -6,7 +6,10 @@ import errorText from "./images/bg-errorText.png";
 import style from "./index.module.scss";
 
 const ErrorFallback: React.FC<FallbackProps> = ({ error }) => {
-    console.log(error);
+    useEffect(() => {
+        console.log(error);
+    }, [error]);
+
     return (
         <div className={style.errorBoundaryContainer}>
             <div className={style.errorBoundaryContent}>
@@ -20,6 +23,15 @@ const ErrorFallback: React.FC<FallbackProps> = ({ error }) => {
 const ErrorBoundary: React.FC<{ children: React.ReactElement | React.ReactElement[] }> = ({
     children
 }) => {
+    useEffect(() => {
+        window.addEventListener("error", function (event) {
+            console.log(event);
+        });
+
+        window.addEventListener("unhandledrejection", function (event) {
+            console.log(event);
+        });
+    }, []);
     return (
         <ErrorBoundaryComponent FallbackComponent={ErrorFallback}>
             {children}
