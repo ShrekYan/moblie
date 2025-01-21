@@ -63,8 +63,8 @@ export default {
         preprocessorOptions: {
             scss: {
                 additionalData: `
-                         @import "/src/styles/variables.scss"; 
-                         @import "/src/styles/mixin.scss";`
+                        @import "/src/assets/css/variables.scss";
+                        @import "/src/assets/css/mixin.scss";`
             }
         },
         modules: {

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import reactLogo from "./../../assets/react.svg";
-import viteLogo from "./../../../public/vite.svg";
+import reactLogo from "/images/react.svg";
+import viteLogo from "/images/vite.svg";
 import classnames from "classnames";
 import styles from "./index.module.scss";
 import http from "./../../service/http/index.ts";
