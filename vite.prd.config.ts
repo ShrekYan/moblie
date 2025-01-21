@@ -69,7 +69,7 @@ export default {
         },
         modules: {
             scopeBehaviour: "local",
-            localsConvention: 'camelCase'
+            localsConvention: "camelCase"
         },
         devSourcemap: false,
         transformer: "postcss",
@@ -100,7 +100,16 @@ export default {
         write: true,
         emptyOutDir: true,
         chunkSizeWarningLimit: 500,
-        copyPublicDir:true
+        copyPublicDir: true,
+        rollupOptions:{
+            output:{
+                manualChunks:{
+                    'react-vendor':['react','react-dom','react-router-dom']
+                }
+            },
+            parallel:true,
+            maxParallelFileOps:30
+        }
         // terserOptions: {
         //     compress: {
         //         drop_console: true,

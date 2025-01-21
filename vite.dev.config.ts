@@ -77,6 +77,15 @@ export default {
         write: true,
         emptyOutDir: true,
         chunkSizeWarningLimit: 500,
-        copyPublicDir:true
+        copyPublicDir:true,
+        rollupOptions:{
+            output:{
+                manualChunks:{
+                    'react-vendor':['react','react-dom','react-router-dom']
+                }
+            },
+            parallel:true,
+            maxParallelFileOps:30
+        }
     }
 } as UserConfig;
