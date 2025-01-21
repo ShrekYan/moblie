@@ -88,7 +88,7 @@ export default {
         port: 8888
     },
     build: {
-        target: "modules",
+        targets: [ "ie >= 10", ">0.3%, ios >= 9"],
         modulePreload: true,
         outDir: "./dist",
         assetsDir: "./assets",
@@ -107,7 +107,6 @@ export default {
                     'react-vendor':['react','react-dom','react-router-dom']
                 }
             },
-            parallel:true,
             maxParallelFileOps:30
         }
         // terserOptions: {

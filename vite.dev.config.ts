@@ -84,7 +84,6 @@ export default {
                     'react-vendor':['react','react-dom','react-router-dom']
                 }
             },
-            parallel:true,
             maxParallelFileOps:30
         }
     }
