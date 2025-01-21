@@ -69,7 +69,7 @@ export default {
         },
         modules: {
             scopeBehaviour: "local",
-            localsConvention: "camelCaseOnly"
+            localsConvention: 'camelCase'
         },
         devSourcemap: false,
         transformer: "postcss",

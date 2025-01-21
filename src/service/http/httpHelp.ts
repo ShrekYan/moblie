@@ -95,7 +95,7 @@ export const httpPromiseAllForKey = function <IResponse>(
                 }
                 const result: IResponse = {} as IResponse;
                 resp.map((item, index) => {
-                    // @ts-expect-error
+                    // @ts-expect-error 过滤ts报错错误信息
                     result[promiseArray[index].key] = item;
                 });
                 resolve(result);
