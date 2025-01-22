@@ -8,8 +8,8 @@ import session from "./httpPlug/session";
 import networkError from "./httpPlug/networkError";
 // import { getServerUrl } from "@Src/config";
 
-//服务器url前缀
-const serverUrlPrefix = "";
+//根据不同的环境设置不同的服务器环境
+const serverUrlPrefix = import.meta.env.VITE_BACK_END_SERVER;
 
 const http = new httpEnhancer(serverUrlPrefix, "http://dev-yapi.gungunqian.cn:3000/mock/37");
 

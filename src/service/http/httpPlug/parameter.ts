@@ -1,11 +1,12 @@
 // import purBasic from "@Tool/pureBasic/index";
 // import userMiddle from "../../../pureBusiness/part/userMiddle";
 //import { PARAMS_CONFIG } from "./plugConfig";
+import { v4 as uuidV4 } from "uuid";
 
 interface IData {
     version: string;
     source: string;
-    guid: string;
+    uuid: string;
     userId: string;
     sessionId: string;
     busChannel: string;
@@ -15,7 +16,7 @@ interface IData {
 }
 
 export default ({ data }: { data: IData }) => {
-    console.log(data);
+    data.uuid = uuidV4();
     // //从缓存中获取用户信息
     // const user = userMiddle.getCacheUserInfo();
     // data.version = PARAMS_CONFIG.VERSION;
