@@ -1,5 +1,5 @@
-import type { IOptions } from "./http";
-import httpFnStore from "./httpFnStore";
+import type { IOptions } from "./http.ts";
+import httpFnStore from "./httpFnStore.ts";
 
 /**
  * http执行前发送的方法

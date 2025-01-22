@@ -1,7 +1,7 @@
-import { RESPONSE_CODE, CUSTOM_ERRORS, NETWORK } from "./plugConfig";
+import { RESPONSE_CODE, CUSTOM_ERRORS, NETWORK } from "./plugConfig.ts";
 // import showErrorToastFn from "./showErrorToast";
 
-import type { HttpPluginOptions } from "../http";
+import type { HttpPluginOptions } from "../http.ts";
 
 type errorToastFnType = (errorMsg: string) => void;
 

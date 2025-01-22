@@ -1,7 +1,7 @@
-import { RESPONSE_CODE } from "./plugConfig";
+import { RESPONSE_CODE } from "./plugConfig.ts";
 // import userFull from "../../../pureBusiness/full/userFull";
 // import jumpFull from "../../../pureBusiness/part/jumpMiddle";
-import type { HttpPluginOptions } from "./../http";
+import type { HttpPluginOptions } from "../http.ts";
 
 export default ({ options, resp }: HttpPluginOptions) => {
     //session过期处理

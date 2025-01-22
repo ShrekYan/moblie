@@ -1,33 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import reactLogo from "/images/react.svg";
 import viteLogo from "/images/vite.svg";
 import classnames from "classnames";
 import styles from "./index.module.scss";
-import http from "./../../service/http/index.ts";
-// import { Button } from "antd-mobile/2x";
 
 const Home: React.FC = () => {
-    // const [count, setCount] = useState<number>(0);
-    // const data = useLoaderData();
-    // console.log(data);
-
-    useEffect(() => {
-        http.post(
-            "https://mobile.qiangungun.com/v1/caribbean/queryMarketIndexs",
-            {
-                marketIndexScenario: "Home"
-            },
-            {
-                customUrl: true
-            }
-        ).then(() => {});
-        http.get("https://mobile.qiangungun.com/v1/wxconfig", {
-            params: {
-                url: encodeURIComponent(window.location.href.split("#")[0])
-            }
-        }).then(() => {});
-    }, []);
-
     return (
         <>
             <div>

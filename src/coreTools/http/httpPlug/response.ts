@@ -1,5 +1,5 @@
-import type { HttpPluginOptions } from "./../http";
-import { RESPONSE_CODE } from "./plugConfig";
+import type { HttpPluginOptions } from "../http.ts";
+import { RESPONSE_CODE } from "./plugConfig.ts";
 
 export default ({ url, options, resp }: HttpPluginOptions) => {
     //默认开启返回原始数据

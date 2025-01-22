@@ -1,6 +1,6 @@
 //import showErrorToastFn from "./showErrorToast";
-import type { HttpPluginOptions } from "./../http";
-import { NETWORK } from "./plugConfig";
+import type { HttpPluginOptions } from "../http.ts";
+import { NETWORK } from "./plugConfig.ts";
 
 type showErrorToastType = (message?: string) => void;
 

@@ -1,11 +1,11 @@
-import httpEnhancer from "./httpEnhancer";
-import parameter from "./httpPlug/parameter";
-import { httpPromiseAll, httpPromiseStatusWrap } from "./httpHelp";
-import { openLoading, closeLoading } from "./httpPlug/loading";
-import response from "./httpPlug/response";
-import responseError from "./httpPlug/responseError";
-import session from "./httpPlug/session";
-import networkError from "./httpPlug/networkError";
+import httpEnhancer from "./httpEnhancer.ts";
+import parameter from "./httpPlug/parameter.ts";
+import { httpPromiseAll, httpPromiseStatusWrap } from "./httpHelp.ts";
+import { openLoading, closeLoading } from "./httpPlug/loading.ts";
+import response from "./httpPlug/response.ts";
+import responseError from "./httpPlug/responseError.ts";
+import session from "./httpPlug/session.ts";
+import networkError from "./httpPlug/networkError.ts";
 // import { getServerUrl } from "@Src/config";
 
 //根据不同的环境设置不同的服务器环境

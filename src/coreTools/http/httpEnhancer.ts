@@ -1,4 +1,4 @@
-import http from "./http";
+import http from "./http.ts";
 
 /**
  * 增强的http

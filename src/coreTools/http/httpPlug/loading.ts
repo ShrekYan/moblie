@@ -1,4 +1,4 @@
-import type { HttpPluginOptions } from "./../http";
+import type { HttpPluginOptions } from "../http.ts";
 
 export const openLoading = ({ options }: Partial<HttpPluginOptions>) => {
     options = options || {};

@@ -1,6 +1,6 @@
 import axios from "axios";
 import type { AxiosRequestConfig } from "axios";
-import { IResponseData } from "@/service/http/http.ts";
+import { IResponseData } from "@/coreTools/http/http.ts";
 
 //设置http网络请求超时时间
 axios.defaults.timeout = 15000 * 2;

@@ -1,6 +1,6 @@
-import httpCore from "./httpCore";
-import httpFnStore from "./httpFnStore";
-import httpFlow from "./httpFlow";
+import httpCore from "./httpCore.ts";
+import httpFnStore from "./httpFnStore.ts";
+import httpFlow from "./httpFlow.ts";
 import type { AxiosResponse, AxiosRequestConfig } from "axios";
 
 /**
