@@ -82,13 +82,7 @@ userId: string;
 * 四个Tabs、缓存Tabs、缓存页面、拦截功能、文件设计、路由设计、框架主题色、scss文件设计
 
 
-### bugs
-react19 + mobile v5 toast
-https://github.com/ant-design/ant-design-mobile/issues/6817
-Toast.show({
-icon: 'loading',
-content: '加载中…',
-})
-
 ### 重要事项
 * 标准的css命名规则：kebab-case
+* react19 + mobile v5 toast, moblie v5不兼容
+  * https://github.com/ant-design/ant-design-mobile/issues/6817

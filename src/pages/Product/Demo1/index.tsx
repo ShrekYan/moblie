@@ -7,6 +7,7 @@ import type { QueryProductRateResponse } from "@/types/responses/product/queryPr
 // import { Toast, Button } from "antd-mobile";
 import { useParams, useSearchParams } from "react-router-dom";
 // import queryString from 'query-string'
+// import {Toast} from 'antd-mobile'
 import classnames from "classnames";
 import style from "./index.module.scss";
 
