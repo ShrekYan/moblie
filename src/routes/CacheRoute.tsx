@@ -15,7 +15,7 @@ const CacheRoute: React.FC<any> = ({ routeItemConfig }) => {
                 >
                     <Suspense fallback={<PageLoading />}>
                         {routeItemConfig.component ? (
-                            <routeItemConfig.component />
+                            <routeItemConfig.component {...routeItemConfig} />
                         ) : (
                             routeItemConfig.element
                         )}
@@ -24,7 +24,7 @@ const CacheRoute: React.FC<any> = ({ routeItemConfig }) => {
             ) : (
                 <Suspense fallback={<PageLoading />}>
                     {routeItemConfig.component ? (
-                        <routeItemConfig.component />
+                        <routeItemConfig.component {...routeItemConfig} />
                     ) : (
                         routeItemConfig.element
                     )}

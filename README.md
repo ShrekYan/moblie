@@ -80,6 +80,7 @@ userId: string;
 
 ### todo
 * 四个Tabs、缓存Tabs、缓存页面、拦截功能、文件设计、路由设计、框架主题色、scss文件设计
+* react19版本的学习
 
 
 ### 重要事项
