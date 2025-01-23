@@ -65,5 +65,30 @@ ReactHelpers：突出工具库提供辅助功能的特性。
 ReactBase：表示基础功能的集合。
 ReactCoreTools：强调核心工具的集合。
 
+### ts类型定义
+// 请求参数
+interface LoginRequest {
+username: string;
+password: string;
+}
+
+// 响应数据
+interface LoginResponse {
+token: string;
+userId: string;
+}
+
 ### todo
-* 四个Tabs、缓存Tabs、拦截功能
+* 四个Tabs、缓存Tabs、缓存页面、拦截功能、文件设计、路由设计、框架主题色、scss文件设计
+
+
+### bugs
+react19 + mobile v5 toast
+https://github.com/ant-design/ant-design-mobile/issues/6817
+Toast.show({
+icon: 'loading',
+content: '加载中…',
+})
+
+### 重要事项
+* 标准的css命名规则：kebab-case

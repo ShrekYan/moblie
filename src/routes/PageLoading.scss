@@ -1,0 +1,86 @@
+.page-loading-wrap {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: #f5f5f9;
+  z-index: 9999;
+
+
+  .page-loading-pic {
+    width: 120px;
+    height: 120px;
+    background: url('https://galaxy.qiangungun.com/galaxy/share-react/build/logo.png') no-repeat;
+    background-size: contain;
+  }
+
+  .page-loading-content {
+    display: flex;
+    align-content: center;
+    text-align: left;
+    overflow: hidden;
+
+    .loading-dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .dot-item {
+      margin-left: 20px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #FC6047;
+      opacity: 0;
+    }
+
+    .dot-item:first-child {
+      margin-left: 0;
+    }
+
+    .first-dot {
+      animation-name: opening-animation-dot;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+      animation-delay: 0s;
+
+    }
+
+    .tow-dot {
+      animation-name: opening-animation-dot;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+      animation-delay: .25s;
+
+    }
+
+    .three-dot {
+      animation-name: opening-animation-dot;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+      animation-delay: .50s;
+    }
+  }
+}
+
+@keyframes opening-animation-dot {
+  25% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

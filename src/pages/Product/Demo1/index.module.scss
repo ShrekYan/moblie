@@ -1,0 +1,178 @@
+.rate-structure-container {
+  font-size: 28px;
+  padding-bottom: 50px;
+
+  /* 公共间距样式 */
+  .common-padding {
+    padding: 26px;
+  }
+
+  /* 销售服务费率 */
+  .sale-serve-rate {
+    @extend .common-padding;
+
+    border-bottom: 1px solid #eee;
+    background: #fff;
+    color: #434343;
+
+    .title {
+      font-size: 32px;
+    }
+
+    .desc {
+      padding: 24px 0;
+      color: #999;
+    }
+
+    .sub-desc {
+      display: flex;
+
+      .left-area {
+        padding-top: 8px;
+        flex-basis: 145px;
+      }
+
+      .right-area {
+        flex: 1;
+        line-height: 45px;
+        margin-left: 10px;
+        color: #999;
+      }
+    }
+
+  }
+
+  /* 表格模块样式 */
+  .table-block {
+    @extend .common-padding;
+
+    padding-bottom: 40px;
+    margin-top: 20px;
+    background: #fff;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    font-size: 24px;
+
+    .title {
+      color: #434343;
+      font-size: 32px;
+    }
+
+    .table {
+      margin-top: 30px;
+      border: 1px solid #eee;
+
+      .table-head {
+        .row {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 84px;
+          line-height: 84px;
+          background: #f7f6f9;
+
+          .item {
+            flex: 1;
+            text-align: center;
+            border-right: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            color: #333;
+            font-weight: 400;
+          }
+
+          .item:last-child {
+            border-right: 0;
+          }
+        }
+      }
+
+      .table-content {
+        :global {
+          .row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 84px;
+            line-height: 84px;
+            border-bottom: 1px solid #eee;
+
+            .item {
+              flex: 1;
+              text-align: center;
+              color: #999;
+              border-right: 1px solid #eee;
+            }
+
+            .item:last-child {
+              border: 0;
+            }
+          }
+
+          .row:last-child {
+            border: 0;
+          }
+        }
+      }
+    }
+  }
+
+  /* !*基金认购费率*!
+   .fundSubscribe {
+   }
+
+   !*基金赎回费率*!
+   .fundRedeemRate {
+
+   } */
+
+  /* 基金运作费 */
+  .fund-operation-rate {
+    @extend .common-padding;
+
+    margin-top: 20px;
+    background: #fff;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    font-size: 28px;
+
+    .title {
+      color: #434343;
+      font-size: 32px;
+    }
+
+    .desc-container {
+      .desc-item {
+        display: flex;
+        justify-content: center;
+        padding-top: 20px;
+        padding-bottom: 20px;
+
+        .left-area {
+          padding-top: 15px;
+          flex-basis: 150px;
+          width: 150px;
+          color: #424242;
+        }
+
+        .right-area {
+          flex: 1;
+          line-height: 50px;
+          color: #999;
+        }
+      }
+
+      .desc-item:first-child {
+        border-bottom: 1px solid #eee;
+      }
+
+      .desc-item:last-child {
+        padding-bottom: 10px;
+      }
+    }
+  }
+
+  /*  !*基金申购费率*!
+    .fundPurchaseRate {
+
+    } */
+}

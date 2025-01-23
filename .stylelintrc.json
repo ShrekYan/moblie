@@ -27,6 +27,8 @@
       {
         "message": "Expected custom property to be kebab-case"
       }
-    ]
+    ],
+    "scss/at-extend-no-missing-placeholder": null,
+    "no-descending-specificity": null
   }
 }

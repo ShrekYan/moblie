@@ -1,12 +1,14 @@
-import {defineConfig} from 'vite'
-import viteDevConfig  from './vite.dev.config'
-import vitePrdConfig  from './vite.prd.config'
+import { defineConfig } from "vite";
+import viteDevConfig from "./vite.dev.config";
+import vitePrdConfig from "./vite.prd.config";
 
 
 // https://vitejs.dev/config/
 export default defineConfig((config) => {
-    if(config.command ==='serve'){
-        return viteDevConfig;
+    //本地启动配置
+    if (config.command === "serve") {
+        return viteDevConfig(config);
     }
-    return vitePrdConfig;
-})
+    //build配置
+    return vitePrdConfig(config);
+});

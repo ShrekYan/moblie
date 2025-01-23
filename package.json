@@ -37,6 +37,7 @@
     "path-to-regexp": "^8.2.0",
     "pdfh5": "^1.4.9",
     "qrcode": "^1.5.4",
+    "query-string": "^9.1.1",
     "react": "^19.0.0",
     "react-activation": "^0.12.4",
     "react-countup": "^6.5.3",

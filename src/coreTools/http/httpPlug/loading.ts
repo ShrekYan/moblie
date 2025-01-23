@@ -3,6 +3,13 @@ import type { HttpPluginOptions } from "../http.ts";
 export const openLoading = ({ options }: Partial<HttpPluginOptions>) => {
     options = options || {};
     if (options.isLoading) {
+        // console.log(Toast);
+        // setTimeout(()=>{
+        //     Toast.show({
+        //         icon: 'loading',
+        //         content: '加载中…',
+        //     })
+        // },3000);
         // Taro.showLoading({
         //     title: "正在加载...",
         //     mask: true

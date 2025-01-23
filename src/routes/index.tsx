@@ -24,6 +24,10 @@ const routerConfigList = [
         cache: true
     },
     {
+        path: "/demo/:productId",
+        component: React.lazy(() => import("./../pages/Product/Demo1/index.tsx"))
+    },
+    {
         //todo 使用重定向？？？
         path: "*",
         component: React.lazy(() => import("./../pages/Home/index.tsx"))
