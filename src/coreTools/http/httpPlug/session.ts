@@ -1,16 +1,11 @@
-import { RESPONSE_CODE } from "./plugConfig.ts";
-// import userFull from "../../../pureBusiness/full/userFull";
-// import jumpFull from "../../../pureBusiness/part/jumpMiddle";
+import { RESPONSE_CODE } from "./constant.ts";
 import type { HttpPluginOptions } from "../http.ts";
+import { createBrowserHistory } from "history";
 
 export default ({ options, resp }: HttpPluginOptions) => {
+    const history = createBrowserHistory();
     //session过期处理
     if (resp.data.code === RESPONSE_CODE.SESSION_TIMEOUT && options.openExpire) {
-        // //用户登录
-        // jumpFull.sessionIdOverdueJump({
-        //     sessionIdOverdue: true
-        // });
-        // //清除用户缓存信息
-        // userFull.removeCacheUserInfo();
+        console.log(history.push);
     }
 };

@@ -89,3 +89,9 @@ userId: string;
 * react19 + mobile v5 toast, moblie v5不兼容
   * https://github.com/ant-design/ant-design-mobile/issues/6817
 * 图片还是按模块存放比较合理
+* httpPlug自定义第三方组件，如loading等；优先级低
+  * parameter：获取用户信息
+  * 第三方组件改造
+* css与处理器
+  * 设计全局公用的变量和方法
+  * 预处理的基础和方法需要重新学习

@@ -1,14 +1,8 @@
-import { RESPONSE_CODE, CUSTOM_ERRORS, NETWORK } from "./plugConfig.ts";
-// import showErrorToastFn from "./showErrorToast";
-
+import { RESPONSE_CODE, CUSTOM_ERRORS, NETWORK } from "./constant.ts";
+import showErrorToastFn from "./showErrorToast";
 import type { HttpPluginOptions } from "../http.ts";
 
-type errorToastFnType = (errorMsg: string) => void;
-
-//解决提示方法重复执行导致提示语闪屏现象
-//todo
-//showErrorToastFn
-const showErrorToast: errorToastFnType = () => {};
+const showErrorToast = showErrorToastFn();
 
 export default ({ options, resp }: HttpPluginOptions) => {
     let autoInteract = true;

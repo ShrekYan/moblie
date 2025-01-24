@@ -1,6 +1,6 @@
 // import purBasic from "@Tool/pureBasic/index";
 // import userMiddle from "../../../pureBusiness/part/userMiddle";
-//import { PARAMS_CONFIG } from "./plugConfig";
+import { PARAMS_CONFIG } from "./constant.ts";
 import { v4 as uuidV4 } from "uuid";
 
 interface IData {
@@ -15,12 +15,18 @@ interface IData {
     //[props: string]: any;
 }
 
+/**
+ * todo 附带userInfo信息
+ * @param data
+ */
 export default ({ data }: { data: IData }) => {
-    data.uuid = uuidV4();
+    data.uuid = uuidV4().replace(/-/g, "");
+    data.version = PARAMS_CONFIG.VERSION;
+    data.source = PARAMS_CONFIG.SOURCE;
     // //从缓存中获取用户信息
     // const user = userMiddle.getCacheUserInfo();
-    // data.version = PARAMS_CONFIG.VERSION;
-    // data.source = PARAMS_CONFIG.SOURCE;
+    //
+    //
     // data.guid = purBasic.guid.getGuid();
     // // data.busChannel = "mk";
     // // data.sysChannel = "MINI";

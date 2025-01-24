@@ -1,19 +1,13 @@
 import type { HttpPluginOptions } from "../http.ts";
+import { Toast } from "antd-mobile";
 
 export const openLoading = ({ options }: Partial<HttpPluginOptions>) => {
     options = options || {};
     if (options.isLoading) {
-        // console.log(Toast);
-        // setTimeout(()=>{
-        //     Toast.show({
-        //         icon: 'loading',
-        //         content: '加载中…',
-        //     })
-        // },3000);
-        // Taro.showLoading({
-        //     title: "正在加载...",
-        //     mask: true
-        // });
+        Toast.show({
+            icon: "loading",
+            content: "加载中..."
+        });
     }
 };
 
@@ -22,8 +16,6 @@ export const closeLoading = ({ options }: Partial<HttpPluginOptions>) => {
     options = options || {};
     // const delayTime = 300;
     if (options.isLoading) {
-        // setTimeout(() => {
-        //     Taro.hideLoading({});
-        // }, delayTime);
+        Toast.clear();
     }
 };

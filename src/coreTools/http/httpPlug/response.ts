@@ -1,5 +1,6 @@
 import type { HttpPluginOptions } from "../http.ts";
-import { RESPONSE_CODE } from "./plugConfig.ts";
+import { RESPONSE_CODE } from "./constant.ts";
+import { Toast } from "antd-mobile";
 
 export default ({ url, options, resp }: HttpPluginOptions) => {
     //默认开启返回原始数据
@@ -17,8 +18,7 @@ export default ({ url, options, resp }: HttpPluginOptions) => {
     } else {
         //接口发生错误自动关闭loading
         if (options.errorExitAndCloseLoading) {
-            //todo
-            // Taro.hideLoading();
+            Toast.clear();
         }
 
         console.log(

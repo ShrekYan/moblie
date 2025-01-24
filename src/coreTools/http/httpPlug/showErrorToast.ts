@@ -1,15 +1,12 @@
-// import Taro from "@tarojs/taro";
-// import purBasic from "@Tool/pureBasic/index";
+import { Toast } from "antd-mobile";
+import { debounce } from "es-toolkit";
 
 export default function () {
-    // const wait = 500;
-    // const func = function (title: string) {
-    //     Taro.showToast({
-    //         title: title,
-    //         icon: "none",
-    //         duration: 3000,
-    //         mask: true
-    //     });
-    // };
-    // return purBasic.func.debounce(func, wait);
+    const debouncedLog = debounce((errorMsg) => {
+        Toast.show({
+            content: errorMsg,
+            position: "top"
+        });
+    }, 300);
+    return debouncedLog;
 }
