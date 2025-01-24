@@ -80,7 +80,7 @@ userId: string;
 
 ### todo
 * 四个Tabs、缓存Tabs、缓存页面(4个Tab和一个Tab)、拦截功能、文件设计、路由设计、框架主题色、scss文件设计
-* 路由404重定向、缓存路由清除缓存key、todo 使用React-router-domv6 404 重定向
+* 路由404重定向、缓存路由清除缓存key（tab，非tab）、todo 使用React-router-domv6 404 重定向
 * react19版本的学习
 
 
@@ -95,3 +95,5 @@ userId: string;
 * css与处理器
   * 设计全局公用的变量和方法
   * 预处理的基础和方法需要重新学习
+* antd-mobile 主题颜色
+

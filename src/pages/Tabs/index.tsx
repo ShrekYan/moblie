@@ -1,5 +1,6 @@
 import React from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
+//import { useAliveController } from "react-activation";
 import icNoHome from "@/assets/images/Tabs/ic-no-home.png";
 import icHome from "@/assets/images/Tabs/ic-home.gif";
 import icSelect from "@/assets/images/Tabs/ic-select.gif";
@@ -13,6 +14,7 @@ import icNoMy from "@/assets/images/Tabs/ic-no-my.png";
 import style from "./index.module.scss";
 
 const TabWrapper: React.FC = () => {
+    // const { getCachingNodes } = useAliveController();
     const location = useLocation();
     const navigate = useNavigate();
     /**

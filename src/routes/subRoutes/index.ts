@@ -1,20 +1,5 @@
-import React from "react";
+import productRoutes from "./product.ts";
 
-const routerConfigList = [
-    {
-        path: "/home",
-        component: React.lazy(() => import("@/pages/Home/index.tsx")),
-        cache: true
-    },
-    {
-        path: "/mobx",
-        component: React.lazy(() => import("@/pages/Mobx/index.tsx")),
-        cache: true
-    },
-    {
-        path: "/demo/:productId",
-        component: React.lazy(() => import("@/pages/Product/Demo1/index.tsx"))
-    }
-];
+const bizRoutes = [...productRoutes];
 
-export default routerConfigList;
+export default bizRoutes;
