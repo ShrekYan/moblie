@@ -1,10 +1,16 @@
+import React from "react";
 import { Suspense } from "react";
 import KeepAlive from "react-activation";
 import PageLoading from "./PageLoading.tsx";
+import type { RouteObject } from "react-router-dom";
 
-export const getCacheRoute = (routeItemConfig: any) => {
+type routeConfig = RouteObject & { cache?: boolean; component?: React.ComponentType<any> };
+
+export const getRouteComponent = (routeItemConfig: routeConfig) => {
     //是否为带有缓存路由标示
     const cacheFlag = routeItemConfig.cache;
+    const Component = routeItemConfig.component;
+
     return (
         <>
             {cacheFlag ? (
@@ -15,7 +21,11 @@ export const getCacheRoute = (routeItemConfig: any) => {
                 >
                     <Suspense fallback={<PageLoading />}>
                         {routeItemConfig.component ? (
-                            <routeItemConfig.component {...routeItemConfig} />
+                            Component ? (
+                                <Component {...routeItemConfig} />
+                            ) : (
+                                routeItemConfig.element
+                            )
                         ) : (
                             routeItemConfig.element
                         )}
@@ -24,7 +34,11 @@ export const getCacheRoute = (routeItemConfig: any) => {
             ) : (
                 <Suspense fallback={<PageLoading />}>
                     {routeItemConfig.component ? (
-                        <routeItemConfig.component {...routeItemConfig} />
+                        Component ? (
+                            <Component {...routeItemConfig} />
+                        ) : (
+                            routeItemConfig.element
+                        )
                     ) : (
                         routeItemConfig.element
                     )}

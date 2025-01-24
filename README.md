@@ -88,3 +88,4 @@ userId: string;
 * 标准的css命名规则：kebab-case
 * react19 + mobile v5 toast, moblie v5不兼容
   * https://github.com/ant-design/ant-design-mobile/issues/6817
+* 图片还是按模块存放比较合理

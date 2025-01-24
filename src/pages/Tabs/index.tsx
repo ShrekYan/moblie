@@ -1,15 +1,15 @@
 import React from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import icNoHome from "@/pages/Tabs/assets/ic-no-home.png";
-import icHome from "@/pages/Tabs/assets/ic-home.gif";
-import icSelect from "@/pages/Tabs/assets/ic-select.gif";
-import icNoSelect from "@/pages/Tabs/assets/ic-no-select.png";
-import icInvestment from "@/pages/Tabs/assets/ic-investment.gif";
-import icNoInvestment from "@/pages/Tabs/assets/ic-no-investment.png";
-import icProduct from "@/pages/Tabs/assets/ic-product.gif";
-import icNoProduct from "@/pages/Tabs/assets/ic-no-product.png";
-import icMy from "@/pages/Tabs/assets/ic-my.gif";
-import icNoMy from "@/pages/Tabs/assets/ic-no-my.png";
+import icNoHome from "@/assets/images/Tabs/ic-no-home.png";
+import icHome from "@/assets/images/Tabs/ic-home.gif";
+import icSelect from "@/assets/images/Tabs/ic-select.gif";
+import icNoSelect from "@/assets/images/Tabs/ic-no-select.png";
+import icInvestment from "@/assets/images/Tabs/ic-investment.gif";
+import icNoInvestment from "@/assets/images/Tabs/ic-no-investment.png";
+import icProduct from "@/assets/images/Tabs/ic-product.gif";
+import icNoProduct from "@/assets/images/Tabs/ic-no-product.png";
+import icMy from "@/assets/images/Tabs/ic-my.gif";
+import icNoMy from "@/assets/images/Tabs/ic-no-my.png";
 import style from "./index.module.scss";
 
 const TabWrapper: React.FC = () => {
