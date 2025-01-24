@@ -96,4 +96,5 @@ userId: string;
   * 设计全局公用的变量和方法
   * 预处理的基础和方法需要重新学习
 * antd-mobile 主题颜色
+* authComponent 未登录拦截器
 
