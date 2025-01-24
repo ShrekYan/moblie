@@ -79,7 +79,8 @@ userId: string;
 }
 
 ### todo
-* 四个Tabs、缓存Tabs、缓存页面、拦截功能、文件设计、路由设计、框架主题色、scss文件设计
+* 四个Tabs、缓存Tabs、缓存页面(4个Tab和一个Tab)、拦截功能、文件设计、路由设计、框架主题色、scss文件设计
+* 路由404重定向、缓存路由清除缓存key、todo 使用React-router-domv6 404 重定向
 * react19版本的学习
 
 

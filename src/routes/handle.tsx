@@ -1,8 +1,8 @@
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import KeepAlive from "react-activation";
 import PageLoading from "./PageLoading.tsx";
 
-const CacheRoute: React.FC<any> = ({ routeItemConfig }) => {
+export const getCacheRoute = (routeItemConfig: any) => {
     //是否为带有缓存路由标示
     const cacheFlag = routeItemConfig.cache;
     return (
@@ -33,5 +33,3 @@ const CacheRoute: React.FC<any> = ({ routeItemConfig }) => {
         </>
     );
 };
-
-export default CacheRoute;

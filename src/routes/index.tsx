@@ -1,31 +1,30 @@
 import { useRoutes } from "react-router-dom";
-//Navigate
-// import KeepAlive from "react-activation";
-// import PageLoading from "./PageLoading.tsx";
-import CacheRoute from "./CacheRoute.tsx";
+import { getCacheRoute } from "./handle.tsx";
 import AuthComponent from "./AuthComponent.tsx";
 import AutoLogin from "./AutoLogin.tsx";
-// import routerConfigList from "./subRoutes/index.ts";
 import tabRoutes from "./tabRoutes.tsx";
 
 /**
  * todo 去除any定义
+ * todo 使用React-router-domv6 404 重定向
  * @param routes
  */
 const generateRouter = (routes: any) => {
     return routes.map((item: any) => {
-        if (item.children) {
+        if (item?.children?.length > 0) {
             item.children = generateRouter(item.children);
         }
-        item.element = (
-            <AuthComponent routeConfig={item} component={<CacheRoute routeItemConfig={item} />} />
-        );
+        //todo  xxxx
+        const CacheRoute = getCacheRoute(item);
+        item.element = <AuthComponent routeConfig={item} component={CacheRoute} />;
         return item;
     });
 };
 
+//生成路由列表
+const tempRouteList = generateRouter(tabRoutes);
+
 export default () => {
-    //生成RouteList
-    const RouteList = useRoutes(generateRouter(tabRoutes));
+    const RouteList = useRoutes(tempRouteList);
     return <AutoLogin RouteList={RouteList} />;
 };

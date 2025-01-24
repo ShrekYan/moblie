@@ -1,0 +1,33 @@
+.tab-wrapper {
+  display: flex;
+
+  .tab-bar {
+    display: flex;
+    width: 100%;
+    height: 106px;
+    background: #fff;
+    position: fixed;
+    bottom: 0;
+    z-index: 996;
+    border-top: $borderCol;
+    box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 3%);
+
+    .tab-bar-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .tab-page-icon {
+        width: 60px;
+        height: 60px;
+      }
+
+      .tab-text {
+        font-size: 20px;
+        color: $lightGrayDark;
+      }
+    }
+  }
+}
