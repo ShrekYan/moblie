@@ -1,13 +1,10 @@
 import type { HttpPluginOptions } from "../http.ts";
-import { Toast } from "antd-mobile";
+import loadingUtil from "./loadingUtil.tsx";
 
 export const openLoading = ({ options }: Partial<HttpPluginOptions>) => {
     options = options || {};
     if (options.isLoading) {
-        Toast.show({
-            icon: "loading",
-            content: "加载中..."
-        });
+        loadingUtil.showLoading();
     }
 };
 
@@ -16,6 +13,6 @@ export const closeLoading = ({ options }: Partial<HttpPluginOptions>) => {
     options = options || {};
     // const delayTime = 300;
     if (options.isLoading) {
-        Toast.clear();
+        loadingUtil.removeLoading();
     }
 };

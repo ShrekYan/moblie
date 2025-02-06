@@ -1,0 +1,145 @@
+$green: #008744;
+$blue: #0057e7;
+$red: #d62d20;
+$yellow: #ffa700;
+$white: #eee;
+
+.common-loading {
+  .loading-container {
+    position: fixed;
+    z-index: 99999;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    transform: translateZ(1px);
+
+    .mask {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      background: rgba(0, 0, 0, 20%);
+      z-index: 1005;
+    }
+
+    .content {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      color: #fff;
+      z-index: 1006;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      /* 内容的容器 */
+      .container {
+        padding: 20px;
+        border-radius: 10px;
+        color: #fff;
+        background: #fff;
+
+        .desc {
+          padding-top: 10px;
+          font-size: 24px;
+        }
+
+        /* loading效果 */
+        .loader {
+          position: relative;
+          margin: 0 auto;
+          width: 60px;
+
+          &::before {
+            content: '';
+            display: block;
+            padding-top: 100%;
+          }
+
+          .circular1 {
+            animation: rotate 2s linear infinite;
+            height: 100%;
+            transform-origin: center center;
+            width: 100%;
+            position: absolute;
+            inset: 0;
+            margin: auto;
+
+            .path {
+              stroke-dasharray: 1, 200;
+              stroke-dashoffset: 0;
+              stroke: $logoColor3;
+              animation: dash 2s ease-in-out infinite;
+              stroke-linecap: round;
+            }
+          }
+
+          .circular2 {
+            animation: rotate 1s linear infinite;
+            width: 70%;
+
+            @extend .circular1;
+
+            .path {
+              animation: dash1 1s ease infinite;
+              stroke-linecap: round;
+            }
+          }
+        }
+
+        @keyframes rotate {
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+
+        @keyframes dash {
+          0% {
+            stroke-dasharray: 1, 200;
+            stroke-dashoffset: 0;
+          }
+
+          50% {
+            stroke-dasharray: 89, 200;
+            stroke-dashoffset: -35px;
+          }
+
+          100% {
+            stroke-dasharray: 89, 200;
+            stroke-dashoffset: -124px;
+          }
+        }
+
+        @keyframes dash1 {
+          0% {
+            stroke-dasharray: 1, 200;
+            stroke-dashoffset: 0;
+          }
+
+          50% {
+            stroke-dasharray: 89, 200;
+            stroke-dashoffset: -35px;
+          }
+
+          100% {
+            stroke-dasharray: 89, 200;
+            stroke-dashoffset: -124px;
+          }
+        }
+
+        @keyframes color {
+          100%,
+          0% {
+            stroke: $red;
+          }
+        }
+
+        .loader-text {
+          padding-top: 10px;
+          font-size: 20px;
+          color: $fontCol;
+        }
+      }
+    }
+  }
+
+}
