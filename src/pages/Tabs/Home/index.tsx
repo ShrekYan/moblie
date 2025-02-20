@@ -15,6 +15,7 @@ const Home: React.FC = () => {
     return (
         <div>
             <Button
+                color="primary"
                 type={"button"}
                 onClick={() => {
                     navigate("/product/rateStructure/622080");
