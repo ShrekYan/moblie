@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import PageLoading from "./PageLoading.tsx";
 
-const AutoLogin: React.FC<any> = ({ RouteList }) => {
+/**
+ * 冷启动：冷启动是指程序或系统从完全关闭的状态重新启动
+ * todo 全局接口初始化、自动登录
+ * @param RouteList
+ * @constructor
+ */
+const ColdStart: React.FC<any> = ({ RouteList }) => {
     const [isShow, setIsShow] = useState(false);
 
     useEffect(() => {
@@ -12,4 +18,4 @@ const AutoLogin: React.FC<any> = ({ RouteList }) => {
     return isShow ? RouteList : <PageLoading />;
 };
 
-export default AutoLogin;
+export default ColdStart;
