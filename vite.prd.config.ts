@@ -73,8 +73,10 @@ export default (config: ConfigEnv) => {
             preprocessorOptions: {
                 scss: {
                     additionalData: `
-                        @import "/src/assets/css/variables.scss";
-                        @import "/src/assets/css/mixin.scss";`
+                         @import "/src/assets/css/variables.scss";
+                         @import "/src/assets/css/mixin.scss";
+                         @import "/src/assets/css/function.scss";
+                         `
                 }
             },
             modules: {

@@ -1,3 +1,4 @@
+import React from "react";
 import { Suspense } from "react";
 import KeepAlive from "react-activation";
 import PageLoading from "./PageLoading.tsx";
@@ -27,10 +28,14 @@ export const getRouteComponent = (routeItemConfig: routeConfig) => {
                             Component ? (
                                 <Component {...routeItemConfig} />
                             ) : (
-                                routeItemConfig.element
+                                React.cloneElement(routeItemConfig.element as React.ReactElement, {
+                                    ...routeItemConfig
+                                })
                             )
                         ) : (
-                            routeItemConfig.element
+                            React.cloneElement(routeItemConfig.element as React.ReactElement, {
+                                ...routeItemConfig
+                            })
                         )}
                     </Suspense>
                 </KeepAlive>
@@ -40,10 +45,14 @@ export const getRouteComponent = (routeItemConfig: routeConfig) => {
                         Component ? (
                             <Component {...routeItemConfig} />
                         ) : (
-                            routeItemConfig.element
+                            React.cloneElement(routeItemConfig.element as React.ReactElement, {
+                                ...routeItemConfig
+                            })
                         )
                     ) : (
-                        routeItemConfig.element
+                        React.cloneElement(routeItemConfig.element as React.ReactElement, {
+                            ...routeItemConfig
+                        })
                     )}
                 </Suspense>
             )}

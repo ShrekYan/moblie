@@ -1,0 +1,51 @@
+@use 'sass:color';
+@use 'sass:list';
+
+/*
+.header {
+  background-color: adjust-opacity(blue, 0.5);
+}
+ */
+//颜色操作
+@function adjust-opacity($color,$opacity) {
+  @return rgba($color, $opacity);
+}
+
+
+/**
+.container {
+  width: calculate-width(100px, 2);
+}
+ */
+//计算宽度
+@function calculate-width($base-width,$multiplier) {
+  @return $base-width * $multiplier;
+}
+
+//生成颜色列表
+@function generate-colors($base-color, $count) {
+  $colors: ();
+
+  @for $i from 1 through $count {
+    // 计算颜色调整的百分比
+    $lightness: $i * 10%;
+
+    // 使用 color.adjust 调整颜色的明度
+    $new-color: color.adjust($base-color, $lightness: $lightness);
+
+    // 将新颜色追加到列表中
+    $colors: list.append($colors, $new-color, comma);
+  }
+
+  @return $colors;
+}
+
+//动态类名
+@function dynamic-class($prefix,$suffix) {
+  @return #{ $prefix }-#{ $suffix }
+}
+
+//生成渐变
+@function generate-gradient($color1,$color2) {
+  @return linear-gradient(to right, $color1, $color2);
+}

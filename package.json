@@ -78,7 +78,6 @@
     "husky": "^8.0.3",
     "i": "^0.3.7",
     "lint-staged": "^15.2.10",
-    "npm": "^10.9.0",
     "postcss-color-functional-notation": "^7.0.3",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-initial": "^3.0.4",

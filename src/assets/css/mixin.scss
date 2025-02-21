@@ -1,1 +1,117 @@
 @charset "UTF-8";
+
+/*
+.container {
+  width: 100%;
+  @include responsive(sm, md) {
+    width: 50%;
+  }
+}
+*/
+//响应式
+@mixin responsive($breakpoints...) {
+  @each $breakpoint in $breakpoints {
+    @if $breakpoint == "sm" {
+      @media (min-width >= 576px) {
+        @content;
+      }
+    } @else if $breakpoint == "md" {
+      @media (min-width >= 768px) {
+        @content;
+      }
+    } @else if $breakpoint == "lg" {
+      @media (min-width >= 992px) {
+        @content;
+      }
+    } @else if $breakpoint == "xl" {
+      @media (min-width >= 1200px) {
+        @content;
+      }
+    }
+  }
+}
+
+/**
+.btn-secondary {
+  @include button($bg-color: #6c757d, $text-color: white, $padding: 15px);
+}
+ */
+//通用的按钮样式
+@mixin button($bg-color:#007bff,$text-color:white,$padding:10px,$radius:5x) {
+  background-color: $bg-color;
+  color: $text-color;
+  padding: $padding;
+  border: none;
+  border-radius: $radius;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+/*
+.box {
+  @include border($color: red, $width: 2px);
+}
+*/
+//边框样式
+@mixin border($color:black,$width:1px,$style:solid) {
+  border: $width $style $color;
+}
+
+/**
+.container{
+  @include flex(row,center,space-between);
+}
+ */
+//flexbox布局
+@mixin flex($direction:row,$align:flex-start,$justify:flex-start) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+/**
+.grid-container {
+  @include grid(3, 20px);
+}
+ */
+//Grid布局
+@mixin grid($columns:1,$gutter:0) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gutter;
+}
+
+//响应式图片
+@mixin responsive-image($max-width:100%) {
+  max-width: $max-width;
+  height: auto;
+}
+
+//文本溢出
+@mixin text-overflow($ellipsis: ellipsis) {
+  overflow: hidden;
+  text-overflow: $ellipsis;
+  white-space: nowrap;
+}
+
+//阴影
+@mixin shadow($horizontal:0,$vertical:2px,$blur:4px,$color:rgba(0,0,0,0.2)) {
+  box-shadow: $horizontal $vertical $blur $color;
+}
+
+//动画
+@mixin animation($name,$duration:1s,$timing-function:ease,$delay:0) {
+  animation: $name $duration $timing-function $delay;
+}
+
+//过渡效果
+@mixin transition($property:all,$duration:0.3s,$timing-function:ease){
+  transition: $property $duration $timing-function;
+}
+
+
+

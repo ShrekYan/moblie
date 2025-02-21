@@ -1,54 +1,3 @@
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
-
 ### esbuild
 https://esbuild.bootcss.com/
 
@@ -80,20 +29,25 @@ userId: string;
 
 ### todo
 * ~~四个Tabs、缓存Tabs、缓存页面(4个Tab和一个Tab)~~、~~拦截功能~~、文件设计、路由设计、~~框架主题色~~、scss文件设计
-* ~~路由404重定向~~、缓存路由清除缓存key（tab，非tab）、~~todo 使用React-router-domv6 404 重定向~~
+* ~~路由404重定向~~、~~缓存路由清除缓存key（tab，非tab）~~、~~todo 使用React-router-domv6 404 重定向~~
 * react19版本的学习 
 ~~* httpPlug自定义第三方组件，如loading等；优先级低~~
 * ~~parameter：获取用户信息~~
 * 第三方组件改造？这一点我自己都不知道是什么？
 * scss与处理器
   * 设计全局公用的变量和方法
-  * 预处理的基础和方法需要重新学习
+  * ~~预处理的基础和方法需要重新学习~~
 * ~~GoldStart 冷启动：未登录拦截器、全局接口初始化~~
 * 设计biz hooks
 * 学习package.json文件中的库
 * 引入zustand.js?
+
+* 微服务？？
+
+### 具体功能
 * 完成登录页面开发
   * 登录后返回上一级页面
+* 图表
 
 
 ### 重要事项

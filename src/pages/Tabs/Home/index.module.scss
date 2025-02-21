@@ -1,0 +1,17 @@
+.home-container {
+  $highlight-color: #F90;
+
+  .test {
+    width: 100%;
+    height: 200px;
+    background: $highlight-color;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    width:400px;
+    height:50px;
+    background: red;
+  }
+}
