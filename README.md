@@ -41,6 +41,7 @@ userId: string;
 * 设计biz hooks
 * 学习package.json文件中的库
 * 引入zustand.js?
+* 与app交互
 
 * 微服务？？
 
