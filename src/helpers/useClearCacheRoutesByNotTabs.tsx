@@ -5,7 +5,7 @@ import type { RouteObject } from "react-router-dom";
 export type routeConfig = RouteObject & {
     cache?: boolean;
     component?: React.ComponentType<any>;
-    parentPath?: string;
+    fullPath?: string;
 };
 
 const useClearCacheRoutesByNotTabs = (routeConfig: routeConfig) => {
@@ -15,17 +15,8 @@ const useClearCacheRoutesByNotTabs = (routeConfig: routeConfig) => {
      */
     const clearCacheNodes = useCallback(() => {
         if (routeConfig) {
-            //父级路由片段
-            const parentPath = routeConfig?.parentPath || "";
-            //当前路由path
-            const currentPath = routeConfig?.path;
             //全路径path
-            let fullPath;
-            if (parentPath) {
-                fullPath = parentPath + "/" + currentPath;
-            } else {
-                fullPath = currentPath;
-            }
+            const fullPath = routeConfig?.fullPath || "";
             //跳转非tab时需要清空所有的缓存节点
             if (fullPath?.indexOf("/tab") === -1) {
                 //获取缓存对象数量

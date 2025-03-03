@@ -3,11 +3,11 @@ import { useActivate, useUnactivate } from "react-activation";
 
 const Investment: React.FC = () => {
     useActivate(() => {
-        console.log("TestFunction: didActivate");
+        console.log("Investment: didActivate");
     });
 
     useUnactivate(() => {
-        console.log("TestFunction: willUnactivate");
+        console.log("Investment: willUnactivate");
     });
     return <div>Investment</div>;
 };

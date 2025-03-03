@@ -1,4 +1,4 @@
-import { useRoutes } from "react-router-dom";
+import { useRoutes, Navigate } from "react-router-dom";
 import { getRouteComponent } from "./handle.tsx";
 import Interceptor from "./Interceptor.tsx";
 import ColdStart from "@/routes/ColdStart.tsx";
@@ -11,6 +11,25 @@ export type routeConfig = RouteObject & {
     cache?: boolean;
     component?: React.ComponentType<any>;
     parentPath?: string;
+    fullPath?: string;
+};
+
+/**
+ *  自动生成完整路径
+ * @param routes
+ * @param parentPath
+ */
+const enhanceRoutes = (routes: routeConfig[], parentPath = ""): routeConfig[] => {
+    return routes.map((route) => {
+        const currentPath = route.path ? route.path : "";
+        const path = (parentPath + "/" + currentPath).replace(/\/+/g, "/");
+        return {
+            ...route,
+            //路由全路地址
+            fullPath: path,
+            children: route.children ? enhanceRoutes(route.children, path || "") : undefined
+        };
+    }) as routeConfig[];
 };
 
 /**
@@ -30,15 +49,17 @@ const generateRouter = (routes: RouteObject[]) => {
 };
 
 //生成路由列表
-const allRouteList = generateRouter([
-    ...tabRoutes,
-    ...subRoutes
-    // {
-    //     //页面404时跳转到首页
-    //     path: "*",
-    //     element: <Navigate to={"/tab/home"} replace />
-    // }
-]);
+const allRouteList = generateRouter(
+    enhanceRoutes([
+        ...tabRoutes,
+        ...subRoutes,
+        {
+            //页面404时跳转到首页
+            path: "*",
+            element: <Navigate to={"/tab/home"} replace />
+        }
+    ])
+);
 
 export default () => {
     const RouteList = useRoutes(allRouteList);

@@ -8,24 +8,20 @@ const DemoRoutes = [
             {
                 path: "reactUse",
                 component: lazy(() => import("@/pages/Demo/ReactUse/Test/index.tsx")),
-                parentPath: "/demo",
                 children: [
                     {
                         path: "test",
-                        component: lazy(() => import("@/pages/Demo/ReactUse/Test/index.tsx")),
-                        parentPath: "/demo/reactUse"
+                        component: lazy(() => import("@/pages/Demo/ReactUse/Test/index.tsx"))
                     }
                 ]
             },
             {
                 path: "useCallbackRef",
-                component: lazy(() => import("@/pages/Demo/UseCallbackRef/index.tsx")),
-                parentPath: "/demo"
+                component: lazy(() => import("@/pages/Demo/UseCallbackRef/index.tsx"))
             },
             {
                 path: "sortable",
-                component: lazy(() => import("@/pages/Demo/SortableContainer/index.tsx")),
-                parentPath: "/demo"
+                component: lazy(() => import("@/pages/Demo/SortableContainer/index.tsx"))
             }
         ]
     }

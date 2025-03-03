@@ -8,13 +8,10 @@ export const getRouteComponent = (routeItemConfig: routeConfig) => {
     //是否为带有缓存路由标示
     const cacheFlag = routeItemConfig.cache;
     const Component = routeItemConfig.component;
+
     //全路径
-    let fullPath;
-    if (routeItemConfig.parentPath) {
-        fullPath = routeItemConfig?.parentPath + "/" + routeItemConfig.path;
-    } else {
-        fullPath = routeItemConfig.path;
-    }
+    const fullPath = routeItemConfig.fullPath;
+
     return (
         <>
             {cacheFlag ? (

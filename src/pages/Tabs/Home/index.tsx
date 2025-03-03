@@ -17,11 +17,11 @@ const Home: React.FC = () => {
     }, []);
 
     useActivate(() => {
-        console.log("TestFunction: didActivate");
+        console.log("home: didActivate");
     });
 
     useUnactivate(() => {
-        console.log("TestFunction: willUnactivate");
+        console.log("home: willUnactivate");
     });
 
     return (

@@ -19,32 +19,27 @@ const tabRoutes = () => {
                 {
                     path: "home",
                     element: <Home />,
-                    cache: true,
-                    parentPath: "/tab"
+                    cache: true
                 },
                 {
                     path: "choose",
                     element: <Choose />,
-                    cache: true,
-                    parentPath: "/tab"
+                    cache: true
                 },
                 {
                     path: "investment",
                     element: <Investment />,
-                    cache: true,
-                    parentPath: "/tab"
+                    cache: true
                 },
                 {
                     path: "fof",
                     element: <Fof />,
-                    cache: true,
-                    parentPath: "/tab"
+                    cache: true
                 },
                 {
                     path: "my",
                     element: <My />,
-                    cache: true,
-                    parentPath: "/tab"
+                    cache: true
                 }
             ]
         }

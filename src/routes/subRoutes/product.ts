@@ -7,8 +7,7 @@ const productRoutes = [
         children: [
             {
                 path: "rateStructure/:productId",
-                component: lazy(() => import("@/pages/Product/RateStructure")),
-                parentPath: "/product"
+                component: lazy(() => import("@/pages/Product/RateStructure"))
             }
         ]
     }
