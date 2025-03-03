@@ -7,11 +7,16 @@ import subRoutes from "./subRoutes";
 import type { RouteObject } from "react-router-dom";
 import React from "react";
 
-export type routeConfig = RouteObject & {
+export type RouteConfig = RouteObject & {
     cache?: boolean;
-    component?: React.ComponentType<any>;
+    component?:
+        | React.LazyExoticComponent<any>
+        | React.ReactElement
+        | React.JSXElementConstructor<any>;
     parentPath?: string;
     fullPath?: string;
+    children?: RouteConfig[];
+    pageName: string;
 };
 
 /**
@@ -19,7 +24,7 @@ export type routeConfig = RouteObject & {
  * @param routes
  * @param parentPath
  */
-const enhanceRoutes = (routes: routeConfig[], parentPath = ""): routeConfig[] => {
+const enhanceRoutes = (routes: RouteConfig[], parentPath = ""): RouteConfig[] => {
     return routes.map((route) => {
         const currentPath = route.path ? route.path : "";
         const path = (parentPath + "/" + currentPath).replace(/\/+/g, "/");
@@ -29,15 +34,15 @@ const enhanceRoutes = (routes: routeConfig[], parentPath = ""): routeConfig[] =>
             fullPath: path,
             children: route.children ? enhanceRoutes(route.children, path || "") : undefined
         };
-    }) as routeConfig[];
+    }) as RouteConfig[];
 };
 
 /**
  * 生成路由信息
  * @param routes
  */
-const generateRouter = (routes: RouteObject[]) => {
-    return routes.map((item: RouteObject) => {
+const generateRouter = (routes: RouteConfig[]) => {
+    return routes.map((item: RouteConfig) => {
         if (item.children && item.children.length > 0) {
             item.children = generateRouter(item.children);
         }
@@ -56,7 +61,8 @@ const allRouteList = generateRouter(
         {
             //页面404时跳转到首页
             path: "*",
-            element: <Navigate to={"/tab/home"} replace />
+            component: <Navigate to={"/tab/home"} replace />,
+            pageName: "404"
         }
     ])
 );

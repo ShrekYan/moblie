@@ -2,15 +2,18 @@ import React from "react";
 import { Suspense } from "react";
 import KeepAlive from "react-activation";
 import PageLoading from "./PageLoading.tsx";
-import type { routeConfig } from "@/routes/index.tsx";
+import type { RouteConfig } from "@/routes/index.tsx";
 
-export const getRouteComponent = (routeItemConfig: routeConfig) => {
+export const getRouteComponent = (routeItemConfig: RouteConfig) => {
     //是否为带有缓存路由标示
     const cacheFlag = routeItemConfig.cache;
-    const Component = routeItemConfig.component;
+    //JSXElementConstructor
+    const Component = routeItemConfig.component as React.JSXElementConstructor<any>;
 
     //全路径
     const fullPath = routeItemConfig.fullPath;
+    //是否为组件实例
+    const isValidElement = React.isValidElement(routeItemConfig.component);
 
     return (
         <>
@@ -22,12 +25,17 @@ export const getRouteComponent = (routeItemConfig: routeConfig) => {
                 >
                     <Suspense fallback={<PageLoading />}>
                         {routeItemConfig.component ? (
-                            Component ? (
+                            Component && !isValidElement ? (
+                                /*JSXElementConstructor*/
                                 <Component {...routeItemConfig} />
                             ) : (
-                                React.cloneElement(routeItemConfig.element as React.ReactElement, {
-                                    ...routeItemConfig
-                                })
+                                /*组件实例*/
+                                React.cloneElement(
+                                    routeItemConfig.component as React.ReactElement,
+                                    {
+                                        ...routeItemConfig
+                                    }
+                                )
                             )
                         ) : (
                             React.cloneElement(routeItemConfig.element as React.ReactElement, {
@@ -39,10 +47,12 @@ export const getRouteComponent = (routeItemConfig: routeConfig) => {
             ) : (
                 <Suspense fallback={<PageLoading />}>
                     {routeItemConfig.component ? (
-                        Component ? (
+                        Component && !isValidElement ? (
+                            /*JSXElementConstructor*/
                             <Component {...routeItemConfig} />
                         ) : (
-                            React.cloneElement(routeItemConfig.element as React.ReactElement, {
+                            /*组件实例*/
+                            React.cloneElement(routeItemConfig.component as React.ReactElement, {
                                 ...routeItemConfig
                             })
                         )

@@ -5,41 +5,49 @@ import Fof from "@/pages/Tabs/Fof/index.tsx";
 import Investment from "@/pages/Tabs/Investment/index.tsx";
 import My from "@/pages/Tabs/My/index.tsx";
 import { Navigate } from "react-router-dom";
+import type { RouteConfig } from "@/routes/index.tsx";
 
-const tabRoutes = () => {
+const tabRoutes = (): RouteConfig[] => {
     return [
         {
             path: "/tab",
-            element: <TabWrapper />,
+            component: TabWrapper,
+            pageName: "tab路由容器",
             children: [
                 {
                     index: true,
-                    element: <Navigate to={"/tab/home"} replace />
+                    component: <Navigate to={"/tab/home"} replace />,
+                    pageName: "重定向跳转到tab/home"
                 },
                 {
                     path: "home",
-                    element: <Home />,
-                    cache: true
+                    component: Home,
+                    cache: true,
+                    pageName: "首页"
                 },
                 {
                     path: "choose",
-                    element: <Choose />,
-                    cache: true
+                    component: Choose,
+                    cache: true,
+                    pageName: "自选"
                 },
                 {
                     path: "investment",
-                    element: <Investment />,
-                    cache: true
+                    component: Investment,
+                    cache: true,
+                    pageName: "投资理财"
                 },
                 {
                     path: "fof",
-                    element: <Fof />,
-                    cache: true
+                    component: Fof,
+                    cache: true,
+                    pageName: "头骨"
                 },
                 {
                     path: "my",
-                    element: <My />,
-                    cache: true
+                    component: My,
+                    cache: true,
+                    pageName: "我的"
                 }
             ]
         }
