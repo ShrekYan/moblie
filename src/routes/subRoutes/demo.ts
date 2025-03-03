@@ -26,6 +26,10 @@ const DemoRoutes = [
             {
                 path: "removeScroll",
                 component: lazy(() => import("@/pages/Demo/RemoveScroll/index.tsx"))
+            },
+            {
+                path: "reactIs",
+                component: lazy(() => import("@/pages/Demo/ReactIs/index.tsx"))
             }
         ]
     }
