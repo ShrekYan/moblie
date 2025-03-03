@@ -57,6 +57,7 @@ export const getRouteComponent = (routeItemConfig: RouteConfig) => {
                             })
                         )
                     ) : (
+                        /*组件实例*/
                         React.cloneElement(routeItemConfig.element as React.ReactElement, {
                             ...routeItemConfig
                         })
