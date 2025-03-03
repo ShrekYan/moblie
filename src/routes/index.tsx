@@ -1,4 +1,4 @@
-import { Navigate, useRoutes } from "react-router-dom";
+import { useRoutes } from "react-router-dom";
 import { getRouteComponent } from "./handle.tsx";
 import Interceptor from "./Interceptor.tsx";
 import ColdStart from "@/routes/ColdStart.tsx";
@@ -32,12 +32,12 @@ const generateRouter = (routes: RouteObject[]) => {
 //生成路由列表
 const allRouteList = generateRouter([
     ...tabRoutes,
-    ...subRoutes,
-    {
-        //页面404时跳转到首页
-        path: "*",
-        element: <Navigate to={"/tab/home"} replace />
-    }
+    ...subRoutes
+    // {
+    //     //页面404时跳转到首页
+    //     path: "*",
+    //     element: <Navigate to={"/tab/home"} replace />
+    // }
 ]);
 
 export default () => {
