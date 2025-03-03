@@ -21,6 +21,11 @@ const DemoRoutes = [
                 path: "useCallbackRef",
                 component: lazy(() => import("@/pages/Demo/UseCallbackRef/index.tsx")),
                 parentPath: "/demo"
+            },
+            {
+                path: "sortable",
+                component: lazy(() => import("@/pages/Demo/SortableContainer/index.tsx")),
+                parentPath: "/demo"
             }
         ]
     }
