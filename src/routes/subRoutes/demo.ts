@@ -88,6 +88,11 @@ const DemoRoutes: RouteConfig[] = [
                 path: "localforage",
                 component: lazy(() => import("@/pages/Demo/Localforage/index.tsx")),
                 pageName: "localforage"
+            },
+            {
+                path: "HTML2Canvas",
+                component: lazy(() => import("@/pages/Demo/HTML2Canvas/index.tsx")),
+                pageName: "HTML2Canvas"
             }
         ]
     }
