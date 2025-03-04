@@ -48,6 +48,11 @@ const DemoRoutes: RouteConfig[] = [
                 path: "infiniteScroller",
                 component: lazy(() => import("@/pages/Demo/InfiniteScroller/index.tsx")),
                 pageName: "infiniteScroller"
+            },
+            {
+                path: "marquee",
+                component: lazy(() => import("@/pages/Demo/Marquee/index.tsx")),
+                pageName: "marquee"
             }
         ]
     }
