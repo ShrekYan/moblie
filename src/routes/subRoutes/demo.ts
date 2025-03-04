@@ -58,6 +58,11 @@ const DemoRoutes: RouteConfig[] = [
                 path: "countUp",
                 component: lazy(() => import("@/pages/Demo/CountUp/index.tsx")),
                 pageName: "countUp"
+            },
+            {
+                path: "queryString",
+                component: lazy(() => import("@/pages/Demo/QueryString/index.tsx")),
+                pageName: "queryString"
             }
         ]
     }
