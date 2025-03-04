@@ -44,13 +44,13 @@ userId: string;
 * 与app交互（WebViewJavascriptBridge）
   * https://github.com/marcuswestin/WebViewJavascriptBridge
   * https://github.com/Lision/WKWebViewJavascriptBridge
-* 微服务？？
 * 别名设计
 
 ### 具体功能
 * 完成登录页面开发
   * 登录后返回上一级页面
 * 图表
+* 微服务、
 
 
 ### 重要事项

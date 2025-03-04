@@ -63,6 +63,11 @@ const DemoRoutes: RouteConfig[] = [
                 path: "queryString",
                 component: lazy(() => import("@/pages/Demo/QueryString/index.tsx")),
                 pageName: "queryString"
+            },
+            {
+                path: "qrCode",
+                component: lazy(() => import("@/pages/Demo/Qrcode/index.tsx")),
+                pageName: "qrCode"
             }
         ]
     }
