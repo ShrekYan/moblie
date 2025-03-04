@@ -83,6 +83,11 @@ const DemoRoutes: RouteConfig[] = [
                 path: "numeral",
                 component: lazy(() => import("@/pages/Demo/Numeral/index.tsx")),
                 pageName: "numeral"
+            },
+            {
+                path: "localforage",
+                component: lazy(() => import("@/pages/Demo/Localforage/index.tsx")),
+                pageName: "localforage"
             }
         ]
     }
