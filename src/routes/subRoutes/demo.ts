@@ -68,6 +68,11 @@ const DemoRoutes: RouteConfig[] = [
                 path: "qrCode",
                 component: lazy(() => import("@/pages/Demo/Qrcode/index.tsx")),
                 pageName: "qrCode"
+            },
+            {
+                path: "pdf",
+                component: lazy(() => import("@/pages/Demo/PdfH5/index.tsx")),
+                pageName: "pdf"
             }
         ]
     }
