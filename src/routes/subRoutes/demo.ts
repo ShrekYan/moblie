@@ -43,6 +43,11 @@ const DemoRoutes: RouteConfig[] = [
                 path: "inputAutoSize",
                 component: lazy(() => import("@/pages/Demo/InputAutoSize/index.tsx")),
                 pageName: "inputAutoSize"
+            },
+            {
+                path: "infiniteScroller",
+                component: lazy(() => import("@/pages/Demo/InfiniteScroller/index.tsx")),
+                pageName: "infiniteScroller"
             }
         ]
     }
