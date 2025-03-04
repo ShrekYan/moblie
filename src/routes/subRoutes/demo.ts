@@ -73,6 +73,11 @@ const DemoRoutes: RouteConfig[] = [
                 path: "pdf",
                 component: lazy(() => import("@/pages/Demo/PdfH5/index.tsx")),
                 pageName: "pdf"
+            },
+            {
+                path: "pathRegexp",
+                component: lazy(() => import("@/pages/Demo/PathRegexp/index.tsx")),
+                pageName: "pathRegexp"
             }
         ]
     }
