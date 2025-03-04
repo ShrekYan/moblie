@@ -38,6 +38,11 @@ const DemoRoutes: RouteConfig[] = [
                 path: "reactIs",
                 component: lazy(() => import("@/pages/Demo/ReactIs/index.tsx")),
                 pageName: "reactIs"
+            },
+            {
+                path: "inputAutoSize",
+                component: lazy(() => import("@/pages/Demo/InputAutoSize/index.tsx")),
+                pageName: "inputAutoSize"
             }
         ]
     }
