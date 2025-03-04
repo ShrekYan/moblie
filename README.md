@@ -28,9 +28,8 @@ userId: string;
 }
 
 ### todo
-* ~~四个Tabs、缓存Tabs、缓存页面(4个Tab和一个Tab)~~、~~拦截功能~~、文件设计、路由设计、~~框架主题色~~、~~scss文件设计~~
+* ~~四个Tabs、缓存Tabs、缓存页面(4个Tab和一个Tab)~~、~~拦截功能~~、~~文件设计、~~路由设计~~、~~~~框架主题色~~、~~scss文件设计~~
 * ~~路由404重定向~~、~~缓存路由清除缓存key（tab，非tab）~~、~~todo 使用React-router-domv6 404 重定向~~
-* react19版本的学习 
 ~~* httpPlug自定义第三方组件，如loading等；优先级低~~
 * ~~parameter：获取用户信息~~
 * 第三方组件改造？这一点我自己都不知道是什么？
@@ -39,7 +38,7 @@ userId: string;
   * ~~预处理的基础和方法需要重新学习~~
 * ~~GoldStart 冷启动：未登录拦截器、全局接口初始化~~
 * 设计biz hooks
-* 学习package.json文件中的库
+~~* 学习package.json文件中的库~~
 * 引入zustand.js?
 * 与app交互（WebViewJavascriptBridge）
   * https://github.com/marcuswestin/WebViewJavascriptBridge
@@ -53,6 +52,14 @@ userId: string;
 * 微服务、
 * 原项目组件库
 * 接入第三方渠道
+* 未研究的库
+  * p-limit
+  * React-use
+  * motion
+  * es-toolkit
+* 未研究
+  * react19版本的学习
+
 
 
 ### 重要事项
@@ -60,5 +67,6 @@ userId: string;
 * react19 + mobile v5 toast, moblie v5不兼容
   * https://github.com/ant-design/ant-design-mobile/issues/6817
 * 图片还是按模块存放比较合理
+
 
 

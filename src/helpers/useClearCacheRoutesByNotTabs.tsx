@@ -1,14 +1,8 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { useAliveController } from "react-activation";
-import type { RouteObject } from "react-router-dom";
+import type { RouteConfig } from "@/routes";
 
-export type routeConfig = RouteObject & {
-    cache?: boolean;
-    component?: React.ComponentType<any>;
-    fullPath?: string;
-};
-
-const useClearCacheRoutesByNotTabs = (routeConfig: routeConfig) => {
+const useClearCacheRoutesByNotTabs = (routeConfig: RouteConfig) => {
     const { clear, getCachingNodes } = useAliveController();
     /**
      * 清空缓存nodes
