@@ -53,6 +53,11 @@ const DemoRoutes: RouteConfig[] = [
                 path: "marquee",
                 component: lazy(() => import("@/pages/Demo/Marquee/index.tsx")),
                 pageName: "marquee"
+            },
+            {
+                path: "countUp",
+                component: lazy(() => import("@/pages/Demo/CountUp/index.tsx")),
+                pageName: "countUp"
             }
         ]
     }
