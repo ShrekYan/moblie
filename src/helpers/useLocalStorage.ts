@@ -1,22 +1,109 @@
-import localforage from "localforage";
+type UseLocalStorage = {
+    getItem<T>(key: string, callback?: (err: any, value: T | null) => void): T | null;
+    setItem<T>(key: string, value: T, callback?: (err: any, value: T | null) => void): T | null;
+    removeItem(key: string, callback?: (err: any) => void): void;
+    clear(callback?: (err: any) => void): void;
+    length(callback?: (err: any, numberOfKeys: number | null) => void): number;
+    key(keyIndex: number, callback?: (err: any, key: string | null) => void): string | "";
+    keys(callback?: (err: any, keys: string[]) => void): string[];
+};
 
-const useLocalStorage = () => {
-    const localforageInstance = localforage.createInstance({
-        name: "galaxy",
-        driver: [
-            localforage.WEBSQL,
-            localforage.LOCALSTORAGE
-            //禁用indexDB
-        ].filter((driver) => driver !== localforage.INDEXEDDB)
-    });
+const useLocalStorage = (): UseLocalStorage => {
+    const prefix = "galaxy/";
+
+    /**
+     * 获取完整的key
+     * @param key
+     */
+    const getFullKey = (key: string): string => {
+        return `${prefix}${key}`;
+    };
+
     return {
-        getItem: localforageInstance.getItem,
-        setItem: localforageInstance.setItem,
-        removeItem: localforageInstance.removeItem,
-        clear: localforageInstance.clear,
-        length: localforageInstance.length,
-        key: localforageInstance.key,
-        keys: localforageInstance.keys
+        getItem<T>(key: string, callback?: (err: any, value: T | null) => void) {
+            const fullKey = getFullKey(key);
+            try {
+                const value = localStorage.getItem(fullKey);
+                const parsedValue = value ? (JSON.parse(value) as T) : value;
+                if (callback) {
+                    callback(null, parsedValue as T);
+                }
+                return parsedValue as T;
+            } catch (error) {
+                if (callback) {
+                    callback(error, null);
+                }
+                return null;
+            }
+        },
+        setItem<T>(
+            key: string,
+            value: T,
+            callback?: (err: any, value: T | null) => void
+        ): T | null {
+            const fullKey = getFullKey(key);
+            try {
+                const serializedValue = JSON.stringify(value);
+                localStorage.setItem(fullKey, serializedValue);
+                if (callback) {
+                    callback(null, serializedValue as T);
+                }
+                return serializedValue as T;
+            } catch (error) {
+                if (callback) {
+                    callback(error, null);
+                }
+                return null;
+            }
+        },
+        removeItem(key: string, callback?: (err: any) => void) {
+            const fullKey = getFullKey(key);
+            try {
+                localStorage.removeItem(fullKey);
+                return Promise.resolve();
+            } catch (error) {
+                callback?.(error);
+                return Promise.reject(error);
+            }
+        },
+        clear(callback?: (err: any) => void) {
+            try {
+                localStorage.clear();
+                callback?.(null);
+            } catch (error) {
+                callback?.(error);
+            }
+        },
+        length(callback?: (err: any, numberOfKeys: number | null) => void) {
+            try {
+                const numberOfKeys = localStorage.length;
+                callback?.(null, numberOfKeys);
+                return numberOfKeys;
+            } catch (error) {
+                callback?.(error, null);
+                return 0;
+            }
+        },
+        key(keyIndex: number, callback?: (err: any, key: string | null) => void) {
+            try {
+                const key: string = localStorage.key(keyIndex) || "";
+                callback?.(null, key);
+                return key;
+            } catch (error) {
+                callback?.(error, "");
+                return "";
+            }
+        },
+        keys(callback?: (err: any, keys: string[]) => void) {
+            try {
+                const keys: string[] = localStorage.keys(callback) || [];
+                callback?.(null, keys);
+                return keys;
+            } catch (error) {
+                callback?.(error, []);
+                return [];
+            }
+        }
     };
 };
 

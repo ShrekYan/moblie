@@ -1,11 +1,11 @@
 type UseSessionStorage = {
-    getItem<T>(key: string, callback?: (err: any, value: T | null) => void): Promise<T | null>;
-    setItem<T>(key: string, value: T, callback?: (err: any, value: T | null) => void): Promise<T>;
-    removeItem(key: string, callback?: (err: any) => void): Promise<void>;
-    clear(callback?: (err: any) => void): Promise<void>;
-    length(callback?: (err: any, numberOfKeys: number | null) => void): Promise<number>;
-    key(keyIndex: number, callback?: (err: any, key: string | null) => void): Promise<string>;
-    keys(callback?: (err: any, keys: string[]) => void): Promise<string[]>;
+    getItem<T>(key: string, callback?: (err: any, value: T | null) => void): T | null;
+    setItem<T>(key: string, value: T, callback?: (err: any, value: T | null) => void): T | null;
+    removeItem(key: string, callback?: (err: any) => void): void;
+    clear(callback?: (err: any) => void): void;
+    length(callback?: (err: any, numberOfKeys: number | null) => void): number;
+    key(keyIndex: number, callback?: (err: any, key: string | null) => void): string | "";
+    keys(callback?: (err: any, keys: string[]) => void): string[];
 };
 
 const useSessionStorage = (): UseSessionStorage => {
@@ -28,19 +28,19 @@ const useSessionStorage = (): UseSessionStorage => {
                 if (callback) {
                     callback(null, parsedValue as T);
                 }
-                return Promise.resolve(parsedValue as T);
+                return parsedValue as T;
             } catch (error) {
                 if (callback) {
                     callback(error, null);
                 }
-                return Promise.reject(error);
+                return null;
             }
         },
         setItem<T>(
             key: string,
             value: T,
             callback?: (err: any, value: T | null) => void
-        ): Promise<T> {
+        ): T | null {
             const fullKey = getFullKey(key);
             try {
                 const serializedValue = JSON.stringify(value);
@@ -48,12 +48,12 @@ const useSessionStorage = (): UseSessionStorage => {
                 if (callback) {
                     callback(null, serializedValue as T);
                 }
-                return Promise.resolve(serializedValue as T);
+                return serializedValue as T;
             } catch (error) {
                 if (callback) {
                     callback(error, null);
                 }
-                return Promise.reject(error);
+                return null;
             }
         },
         removeItem(key: string, callback?: (err: any) => void) {
@@ -70,40 +70,38 @@ const useSessionStorage = (): UseSessionStorage => {
             try {
                 sessionStorage.clear();
                 callback?.(null);
-                return Promise.resolve();
             } catch (error) {
                 callback?.(error);
-                return Promise.reject(error);
             }
         },
         length(callback?: (err: any, numberOfKeys: number | null) => void) {
             try {
                 const numberOfKeys = sessionStorage.length;
                 callback?.(null, numberOfKeys);
-                return Promise.resolve(numberOfKeys);
+                return numberOfKeys;
             } catch (error) {
                 callback?.(error, null);
-                return Promise.reject(error);
+                return 0;
             }
         },
         key(keyIndex: number, callback?: (err: any, key: string | null) => void) {
             try {
                 const key: string = sessionStorage.key(keyIndex) || "";
                 callback?.(null, key);
-                return Promise.resolve(key);
+                return key;
             } catch (error) {
                 callback?.(error, "");
-                return Promise.reject(error);
+                return "";
             }
         },
         keys(callback?: (err: any, keys: string[]) => void) {
             try {
                 const keys: string[] = sessionStorage.keys(callback) || [];
                 callback?.(null, keys);
-                return Promise.resolve(keys);
+                return keys;
             } catch (error) {
                 callback?.(error, []);
-                return Promise.reject(error);
+                return [];
             }
         }
     };

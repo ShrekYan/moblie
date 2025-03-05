@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import React from "react";
+import { Navigate, useLocation } from "react-router-dom";
 import type { RouteConfig } from "@/routes/index.tsx";
 import { getAuthConfig, getIgnoreAuthConfig } from "./loginAuthorityConfig.ts";
 import useCacheUserInfo from "@/biz/useCacheUserInfo.ts";
-import type { UserInfoModal } from "@/types/common/userInfoModal.ts";
+import queryString from "query-string";
 
 /**
  * 检查忽略登陆权限配置
@@ -85,32 +85,24 @@ const AuthComponent: React.FC<{
     component?: React.ReactElement;
     routeConfig: RouteConfig;
 }> = ({ component, routeConfig }) => {
-    //用户信息
-    const [userInfo, setUserInfo] = useState<UserInfoModal>();
-    const [showPage, setShowPage] = useState(false);
+    const location = useLocation();
+    //返回路径=路由片段+参数
+    // const { backPath } = queryString.parse(location.search);
+    const backPathQueryString = `?${queryString.stringify({ backPath: location.pathname + location.search })}`;
 
     const { getCachedUserInfo } = useCacheUserInfo();
-    //根据路由变化每一次都从缓存中获取缓存用户信息
-    useEffect(() => {
-        //获取缓存用户信息
-        getCachedUserInfo().then((cacheUserInfo) => {
-            //设置用户缓存信息
-            setUserInfo(cacheUserInfo as UserInfoModal);
-            setShowPage(true);
-        });
-    }, [routeConfig.fullPath]);
+    //获取用户信息
+    const userInfo = getCachedUserInfo();
 
-    if (showPage) {
-        //进行验证登陆权限配置
-        if (checkLoginAuthConfig(routeConfig)) {
-            //如果需要进行登陆权限授权
-            if (!userInfo) {
-                return <Navigate to="/login" replace={true} />;
-            }
+    //进行验证登陆权限配置
+    if (checkLoginAuthConfig(routeConfig)) {
+        //如果需要进行登陆权限授权
+        if (!userInfo) {
+            console.log(routeConfig.fullPath);
+            return <Navigate to={`/login${backPathQueryString}`} replace={true} />;
         }
-        return component;
     }
-    return null;
+    return component;
 };
 
 export default AuthComponent;

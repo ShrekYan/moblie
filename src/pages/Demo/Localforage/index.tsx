@@ -8,9 +8,7 @@ const LocalforagePage: React.FC = () => {
     //可以封装成hooks
     useEffect(() => {
         localStorage.setItem("userInfo1", { session: "1234", userId: "321" });
-        localStorage.getItem("userInfo1").then((value) => {
-            console.log(value);
-        });
+        localStorage.getItem("userInfo1");
         localStorage.length((err, numberOfKeys) => {
             console.log(numberOfKeys);
             console.log(err);
@@ -20,9 +18,7 @@ const LocalforagePage: React.FC = () => {
             console.log(err);
         });
         sessionStorage.setItem("userInfo1", { session: "1234", userId: "321" });
-        sessionStorage.getItem("userInfo1").then((value) => {
-            console.log(value);
-        });
+        sessionStorage.getItem("userInfo1");
         sessionStorage.length((err, numberOfKeys) => {
             console.log(numberOfKeys);
             console.log(err);
