@@ -9,7 +9,7 @@ import type { AxiosError } from "axios";
  *     // );
  * @param promise
  */
-const useFetch = <TResponse,>(promise: Promise<IResponseData<TResponse>>) => {
+const useFetch = <TResponse>(promise: Promise<IResponseData<TResponse>>) => {
     const [data, setData] = useState<IResponseData<TResponse>>();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<IResponseData<TResponse> | AxiosError>();
