@@ -8,7 +8,7 @@ type GetIgnoreAuthConfig = GetAuthConfig;
  */
 export const getAuthConfig: GetAuthConfig = () => {
     return {
-        account: ["account", "/tab/my"]
+        account: ["/account", "/tab/my"]
     };
 };
 

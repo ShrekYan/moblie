@@ -60,6 +60,10 @@ const checkLoginAuthenticated = (routeConfig: RouteConfig) => {
 };
 
 const checkLoginAuthConfig = (routeConfig: RouteConfig) => {
+    //登陆页面也无需
+    if (routeConfig.fullPath === "/login") {
+        return false;
+    }
     //如果存在忽略权限配置并且路由命中，则不需要进行权限验证
     if (checkLoginIgnoreAuthConfig(routeConfig)) {
         return false;
@@ -83,25 +87,30 @@ const AuthComponent: React.FC<{
 }> = ({ component, routeConfig }) => {
     //用户信息
     const [userInfo, setUserInfo] = useState<UserInfoModal>();
+    const [showPage, setShowPage] = useState(false);
 
     const { getCachedUserInfo } = useCacheUserInfo();
-
+    //根据路由变化每一次都从缓存中获取缓存用户信息
     useEffect(() => {
         //获取缓存用户信息
         getCachedUserInfo().then((cacheUserInfo) => {
             //设置用户缓存信息
             setUserInfo(cacheUserInfo as UserInfoModal);
+            setShowPage(true);
         });
-    }, []);
+    }, [routeConfig.fullPath]);
 
-    //进行验证登陆权限配置
-    if (checkLoginAuthConfig(routeConfig)) {
-        //如果需要进行登陆权限授权
-        if (!userInfo) {
-            return <Navigate to="/login" replace={true} />;
+    if (showPage) {
+        //进行验证登陆权限配置
+        if (checkLoginAuthConfig(routeConfig)) {
+            //如果需要进行登陆权限授权
+            if (!userInfo) {
+                return <Navigate to="/login" replace={true} />;
+            }
         }
+        return component;
     }
-    return component;
+    return null;
 };
 
 export default AuthComponent;
