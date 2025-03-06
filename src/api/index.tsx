@@ -1,7 +1,9 @@
-import product from "./product";
+import product from "./product/index.ts";
+import config from "./config/index.ts";
 
 const api = {
-    product
+    product,
+    config
 };
 
 export default api;

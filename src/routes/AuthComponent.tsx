@@ -2,7 +2,7 @@ import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import type { RouteConfig } from "@/routes/index.tsx";
 import { getAuthConfig, getIgnoreAuthConfig } from "./loginAuthorityConfig.ts";
-import useCacheUserInfo from "@/biz/useCacheUserInfo.ts";
+import useCacheUserInfo from "@/business/useCacheUserInfo.ts";
 import queryString from "query-string";
 
 /**

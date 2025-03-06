@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import useLocalStorage from "@/helpers/useLocalStorage.ts";
-import useSessionStorage from "@/helpers/useSessionStorage.ts";
+import useLocalStorage from "@/utils/storage/useLocalStorage.ts";
+import useSessionStorage from "@/utils/storage/useSessionStorage.ts";
 
 const LocalforagePage: React.FC = () => {
     const localStorage = useLocalStorage();

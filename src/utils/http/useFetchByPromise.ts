@@ -1,4 +1,4 @@
-import type { IResponseData } from "@/coreTools/http/http.ts";
+import type { IResponseData } from "@/core-tools/http/http.ts";
 import { useEffect, useState } from "react";
 import type { AxiosError } from "axios";
 

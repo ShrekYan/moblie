@@ -1,6 +1,6 @@
 export const PARAMS_CONFIG = {
-    SOURCE: "MP",
-    VERSION: "4.13.0"
+    SOURCE: "H",
+    VERSION: "5.0.0"
 };
 /**
  * 网络错误

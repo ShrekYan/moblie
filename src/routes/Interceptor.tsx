@@ -1,6 +1,6 @@
 import React from "react";
 import AuthComponent from "./AuthComponent.tsx";
-import useClearCacheRoutesByNotTabs from "@/helpers/useClearCacheRoutesByNotTabs.ts";
+import useClearCacheRoutesByNotTabs from "@/utils/route/useClearCacheRoutesByNotTabs.ts";
 import type { RouteConfig } from "@/routes/index.tsx";
 
 /**

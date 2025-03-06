@@ -1,6 +1,6 @@
-import http from "@/coreTools/http";
-import { QueryProductRateRequest } from "@/types/requests/product/queryProductRate.ts";
-import { QueryProductRateResponse } from "@/types/responses/product/queryProductRate.ts";
+import http from "@/core-tools/http";
+import type { QueryProductRateRequest } from "@/types/requests/product/queryProductRate.ts";
+import type { QueryProductRateResponse } from "@/types/responses/product/queryProductRate.ts";
 
 /**
  * 查找产品费率

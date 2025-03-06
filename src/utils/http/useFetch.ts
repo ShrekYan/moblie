@@ -1,7 +1,7 @@
-import type { IOptionsAndUndefined, IResponseData } from "@/coreTools/http/http.ts";
+import type { IOptionsAndUndefined, IResponseData } from "@/core-tools/http/http.ts";
 import { useEffect, useState } from "react";
 import type { AxiosError } from "axios";
-import http from "../coreTools/http";
+import http from "@/core-tools/http";
 
 /**
  * demo:

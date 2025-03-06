@@ -1,4 +1,4 @@
-import useLocalStorage from "@/helpers/useLocalStorage.ts";
+import useLocalStorage from "@/utils/storage/useLocalStorage.ts";
 import type { UserInfo } from "@/types/common/userInfo.ts";
 
 const useCacheUserInfo = () => {

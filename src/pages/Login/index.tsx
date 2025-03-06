@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "antd-mobile";
-import useCacheUserInfo from "@/biz/useCacheUserInfo.ts";
+import useCacheUserInfo from "@/business/useCacheUserInfo.ts";
 import { useLocation, useNavigate } from "react-router-dom";
 import queryString from "query-string";
 

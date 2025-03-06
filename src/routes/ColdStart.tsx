@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
+import useApi from "@/business/useApi.ts";
 import PageLoading from "./PageLoading.tsx";
+import useFetchByPromise from "@/utils/http/useFetchByPromise.ts";
+import useLocalStorage from "@/utils/storage/useLocalStorage.ts";
+import { BOSS_CONFIG } from "@/utils/constants/constants.ts";
 
 /**
  * 冷启动：冷启动是指程序或系统从完全关闭的状态重新启动
@@ -7,15 +11,21 @@ import PageLoading from "./PageLoading.tsx";
  * @param RouteList
  * @constructor
  */
-const ColdStart: React.FC<any> = ({ RouteList }) => {
-    const [isShow, setIsShow] = useState(false);
-
+const ColdStart: React.FC<{ RouteList: React.ReactElement }> = ({ RouteList }) => {
+    const [show, setShow] = useState(false);
+    const api = useApi();
+    const localStorage = useLocalStorage();
+    //进入页面进行查询全局配置（全局接口初始化工作）
+    const { data } = useFetchByPromise(api.config.qryBossConfiguration({}));
+    //数据加载完成
     useEffect(() => {
-        setTimeout(() => {
-            setIsShow(true);
-        }, 1000);
-    }, []);
-    return isShow ? RouteList : <PageLoading />;
+        if (data) {
+            localStorage.setItem(BOSS_CONFIG, data.data);
+            setShow(true);
+        }
+    }, [data]);
+
+    return show ? RouteList : <PageLoading />;
 };
 
 export default ColdStart;

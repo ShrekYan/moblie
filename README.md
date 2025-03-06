@@ -8,11 +8,6 @@ https://esbuild.bootcss.com/
 ![img_1.png](img_1.png)
 ~~* 打包编译速度~~
 
-ReactUtils：表示 React 的实用工具。
-ReactToolkit：强调这是一个工具集。
-ReactHelpers：突出工具库提供辅助功能的特性。
-ReactBase：表示基础功能的集合。
-ReactCoreTools：强调核心工具的集合。
 
 ### ts类型定义
 // 请求参数
@@ -32,19 +27,21 @@ userId: string;
 * ~~路由404重定向~~、~~缓存路由清除缓存key（tab，非tab）~~、~~todo 使用React-router-domv6 404 重定向~~
 ~~* httpPlug自定义第三方组件，如loading等；优先级低~~
 * ~~parameter：获取用户信息~~
-* 第三方组件改造？这一点我自己都不知道是什么？
 ~~* scss与处理器~~
   ~~* 设计全局公用的变量和方法~~
   * ~~预处理的基础和方法需要重新学习~~
 * ~~GoldStart 冷启动：未登录拦截器、全局接口初始化~~
-* 设计biz hooks（这个biz尚存问题，后期实战后再做调整）
 ~~* 学习package.json文件中的库~~
 * ~~登陆权限~~
-* 引入zustand.js?
-* mobx、mobx-react
-  * 自定义mobx持久化功能
-* 持久化的数据加密操作
-* 添加React错误组件ErrorBoundary
+~~* 引入zustand.js?（功能与mobx一样）~~
+~~* mobx、mobx-react~~
+  ~~* 自定义mobx持久化功能~~
+* ~~加密工作~~
+  * ~~持久化的数据加密操作~~
+  * ~~url链接加密~~
+* ~~添加React错误组件ErrorBoundary~~
+* 设计biz hooks（这个biz尚存问题，后期实战后再做调整）
+* 第三方组件改造？这一点我自己都不知道是什么？
 * 与app交互（WebViewJavascriptBridge）
   * https://github.com/marcuswestin/WebViewJavascriptBridge
   * https://github.com/Lision/WKWebViewJavascriptBridge
@@ -58,6 +55,7 @@ userId: string;
 * 微服务、
 * 原项目组件库
 * 全局组件控制逻辑
+~~* 项目冷启动（全局初始化、自动登录、skd加载）、sdk加载~~
 * 接入第三方渠道、第三方渠道方法隔离
 * 未研究的库
   * p-limit

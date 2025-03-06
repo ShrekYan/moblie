@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { reaction, toJS, runInAction } from "mobx";
-import useLocalStorage from "@/helpers/useLocalStorage.ts";
+import useLocalStorage from "@/utils/storage/useLocalStorage.ts";
 
 // 转换为普通对象后判断
 const isEmpty = (obj: any) => {
