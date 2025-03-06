@@ -1,5 +1,5 @@
 import useLocalStorage from "@/helpers/useLocalStorage.ts";
-import type { UserInfoModal } from "@/types/common/userInfoModal.ts";
+import type { UserInfo } from "@/types/common/userInfo.ts";
 
 const useCacheUserInfo = () => {
     const localStorage = useLocalStorage();
@@ -9,14 +9,14 @@ const useCacheUserInfo = () => {
      * 获取缓存的用户信息
      */
     const getCachedUserInfo = () => {
-        return localStorage.getItem<UserInfoModal>(localStorageKey);
+        return localStorage.getItem<UserInfo>(localStorageKey);
     };
 
     /**
      * 设置缓存的用户信息
      * @param userInfo
      */
-    const setCachedUserInfo = (userInfo: UserInfoModal) => {
+    const setCachedUserInfo = (userInfo: UserInfo) => {
         return localStorage.setItem(localStorageKey, userInfo);
     };
 

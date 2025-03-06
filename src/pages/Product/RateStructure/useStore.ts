@@ -1,6 +1,10 @@
+import { runInAction } from "mobx";
 import { useLocalObservable } from "mobx-react";
 import type { QueryProductRateRequest } from "@/types/requests/product/queryProductRate.ts";
 import type { QueryProductRateResponse } from "@/types/responses/product/queryProductRate.ts";
+import { withPersist } from "@/helpers/usePersistedStore.ts";
+import { encryptByAES, decryptByAES } from "@/helpers/useEncrypt.ts";
+
 import api from "@/api/index.tsx";
 
 export interface MobxStoreType {
@@ -37,20 +41,35 @@ const useMobxStore: UseMobxStoreType = () => {
                 const response = await api.product.queryProductRate({ productId });
                 const placeholder = "--";
                 const saleServiceRate = response.data.saleServiceRate;
-                store.productRate = response.data;
-                store.purchaseRateList = response.data.purchaseRateList;
-                store.subscribeRateList = response.data.subscribeRateList;
-                store.redeemRateList = response.data.redeemRateList;
-                store.trusteeRatio = response.data.trusteeRatio;
-                store.manageRatio = response.data.manageRatio;
-                store.saleServiceRate =
-                    saleServiceRate && saleServiceRate !== placeholder ? saleServiceRate : null;
+                runInAction(() => {
+                    store.productRate = response.data;
+                    store.purchaseRateList = response.data.purchaseRateList;
+                    store.subscribeRateList = response.data.subscribeRateList;
+                    store.redeemRateList = response.data.redeemRateList;
+                    store.trusteeRatio = response.data.trusteeRatio;
+                    store.manageRatio = response.data.manageRatio;
+                    store.saleServiceRate =
+                        saleServiceRate && saleServiceRate !== placeholder ? saleServiceRate : null;
+                });
             } catch (e) {
                 console.log(e);
             }
         }
     }));
+
+    //仅持久化指定字段
+    //usePersistedStore(store, "productRateStore");
     return store;
 };
 
-export default useMobxStore;
+export default withPersist(useMobxStore, {
+    key: "productRateStore",
+    //序列化
+    serialize: (data) => {
+        return encryptByAES(JSON.stringify(data));
+    },
+    //反序列化
+    deserialize: (str) => {
+        return JSON.parse(decryptByAES(str));
+    }
+});

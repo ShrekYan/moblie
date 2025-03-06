@@ -28,7 +28,7 @@ userId: string;
 }
 
 ### todo
-* ~~四个Tabs、缓存Tabs、缓存页面(4个Tab和一个Tab)~~、~~拦截功能~~、~~文件设计（bizhooks,component）、~~路由设计~~、~~~~框架主题色~~、~~scss文件设计~~
+* ~~四个Tabs、缓存Tabs、缓存页面(4个Tab和一个Tab)~~、~~拦截功能~~、~~~~文件设计（bizhooks,component）~~、~~路由设计~~、~~~~框架主题色~~、~~scss文件设计~~
 * ~~路由404重定向~~、~~缓存路由清除缓存key（tab，非tab）~~、~~todo 使用React-router-domv6 404 重定向~~
 ~~* httpPlug自定义第三方组件，如loading等；优先级低~~
 * ~~parameter：获取用户信息~~
@@ -37,10 +37,14 @@ userId: string;
   ~~* 设计全局公用的变量和方法~~
   * ~~预处理的基础和方法需要重新学习~~
 * ~~GoldStart 冷启动：未登录拦截器、全局接口初始化~~
-* 设计biz hooks
+* 设计biz hooks（这个biz尚存问题，后期实战后再做调整）
 ~~* 学习package.json文件中的库~~
 * ~~登陆权限~~
 * 引入zustand.js?
+* mobx、mobx-react
+  * 自定义mobx持久化功能
+* 持久化的数据加密操作
+* 添加React错误组件ErrorBoundary
 * 与app交互（WebViewJavascriptBridge）
   * https://github.com/marcuswestin/WebViewJavascriptBridge
   * https://github.com/Lision/WKWebViewJavascriptBridge
@@ -48,12 +52,12 @@ userId: string;
 
 ### 具体功能
 ~~* 登陆权限管理~~
-* 完成登录页面开发
-  * 登录后返回上一级页面
+~~* 完成登录页面开发~~
+  ~~* 登录后返回上一级页面~~~~
 * 图表
 * 微服务、
 * 原项目组件库
-* 全局控制逻辑
+* 全局组件控制逻辑
 * 接入第三方渠道、第三方渠道方法隔离
 * 未研究的库
   * p-limit
