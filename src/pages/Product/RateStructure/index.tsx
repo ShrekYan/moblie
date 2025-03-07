@@ -8,6 +8,7 @@ import type { QueryProductRateResponse } from "@/types/responses/product/queryPr
 import { useParams, useSearchParams } from "react-router-dom";
 // import queryString from 'query-string'
 // import {Toast} from 'antd-mobile'
+import useChannelFacade from "@/business/channel/channelFacade/useChannelFacade.ts";
 import classnames from "classnames";
 import style from "./index.module.scss";
 
@@ -15,12 +16,18 @@ const Demo1: React.FC = () => {
     const store = useStore();
     const paramsResult = useParams();
     const [searchParams] = useSearchParams();
+    const channelFacade = useChannelFacade();
 
     useEffectOnce(() => {
         // /#/demo/622543?productId=622543
         const productId = paramsResult?.productId || searchParams.get("productId");
         store.queryProductRate({
             productId: productId || ""
+        });
+
+        //todo
+        channelFacade.pageBack(() => {
+            console.log("Demo1 useEffectOnce");
         });
     });
 

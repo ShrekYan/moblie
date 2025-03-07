@@ -1,8 +1,9 @@
 import { useCallback } from "react";
 import useLocalStorage from "@/utils/storage/useLocalStorage.ts";
 import { CHANNEL_INFO } from "@/utils/constants/constants.channel.ts";
+import { ChannelInfo } from "@/types/common/channelInfo.ts";
 
-const useChannelInfo = <T = any>() => {
+const useChannelInfo = <T extends ChannelInfo>() => {
     const localStorage = useLocalStorage();
 
     /**
@@ -19,9 +20,18 @@ const useChannelInfo = <T = any>() => {
         return localStorage.setItem<T>(CHANNEL_INFO, data);
     }, []);
 
+    /**
+     *  获取渠道名称
+     */
+    const getChannelName = () => {
+        const channelInfo = getChannelInfo();
+        return channelInfo?.channelName || "";
+    };
+
     return {
         getChannelInfo,
-        setChannelInfo
+        setChannelInfo,
+        getChannelName
     };
 };
 

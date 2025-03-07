@@ -31,12 +31,14 @@ const SDKLoad: React.FC<{ RouteList: React.ReactElement }> = ({ RouteList }) => 
         //获取子渠道
         const subChannelKey = (querySubChannel as string) || "";
         if (channelKey) {
-            const skdList = channelConfig[channelKey].sdk;
+            //修正渠道key
+            const fixChannelKey = channelConfig[channelKey] ? channelKey : ChannelInfoMap.DEFAULT;
+            const skdList = channelConfig[fixChannelKey]?.sdk;
             //加载sdk
             createScript(skdList, 0, () => {
                 //预先加载方法
-                const preload = channelConfig[channelKey].preload;
-                preload(channelKey, channelInfo, subChannelKey).then(() => {
+                const preload = channelConfig[fixChannelKey].preload;
+                preload(fixChannelKey, channelInfo, subChannelKey).then(() => {
                     setShow(true);
                 });
             });
