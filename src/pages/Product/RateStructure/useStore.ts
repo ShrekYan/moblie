@@ -63,7 +63,7 @@ const useMobxStore: UseMobxStoreType = () => {
 };
 
 export default withPersist(useMobxStore, {
-    key: "productRateStore",
+    key: "product_rate_store",
     //序列化
     serialize: (data) => {
         return encryptByAES(JSON.stringify(data));

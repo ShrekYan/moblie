@@ -40,8 +40,7 @@ userId: string;
   * ~~持久化的数据加密操作~~
   * ~~url链接加密~~
 * ~~添加React错误组件ErrorBoundary~~
-* 设计biz hooks（这个biz尚存问题，后期实战后再做调整）
-* 第三方组件改造？这一点我自己都不知道是什么？
+* 设计business hooks（这个business尚存问题，后期实战后再做调整）
 * 与app交互（WebViewJavascriptBridge）
   * https://github.com/marcuswestin/WebViewJavascriptBridge
   * https://github.com/Lision/WKWebViewJavascriptBridge
@@ -62,6 +61,7 @@ userId: string;
   * React-use
   * motion
   * es-toolkit
+  * zod.js（需要重点学习此库）
 * 未研究
   * react19版本的学习
 

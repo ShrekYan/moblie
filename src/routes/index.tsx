@@ -68,6 +68,6 @@ const allRouteList = generateRouter(
 );
 
 export default () => {
-    const RouteList = useRoutes(allRouteList);
+    const RouteList = useRoutes(allRouteList) as React.ReactElement;
     return <ColdStart RouteList={RouteList} />;
 };

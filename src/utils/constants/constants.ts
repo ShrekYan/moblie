@@ -1,1 +1,1 @@
-export const BOSS_CONFIG = "BOSS_CONFIG";
+export const BOSS_CONFIG = "boss_config";
