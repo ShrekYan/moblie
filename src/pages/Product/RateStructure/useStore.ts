@@ -4,8 +4,8 @@ import type { QueryProductRateRequest } from "@/types/requests/product/queryProd
 import type { QueryProductRateResponse } from "@/types/responses/product/queryProductRate.ts";
 import { withPersist } from "@/utils/storage/usePersistedStore.ts";
 import { encryptByAES, decryptByAES } from "@/utils/encrypt/useEncrypt.ts";
-
 import api from "@/api/index.tsx";
+import useChannelAction from "@/business/channel/channelAction/useChannelAction.ts";
 
 export interface MobxStoreType {
     queryProductRate: (requestData: QueryProductRateRequest) => QueryProductRateResponse;
@@ -24,6 +24,7 @@ type UseMobxStoreType = () => MobxStoreType;
  * use mobxStore
  */
 const useMobxStore: UseMobxStoreType = () => {
+    const channelAction = useChannelAction();
     const store = useLocalObservable<MobxStoreType>(() => ({
         productRate: {},
         purchaseRateList: [],
@@ -38,16 +39,19 @@ const useMobxStore: UseMobxStoreType = () => {
          */
         async queryProductRate({ productId }) {
             try {
-                const response = await api.product.queryProductRate({ productId });
+                const response = await channelAction.queryProductRateTest?.({ productId }, () => {
+                    return api.product.queryProductRate({ productId });
+                });
+
                 const placeholder = "--";
-                const saleServiceRate = response.data.saleServiceRate;
+                const saleServiceRate = response?.data.saleServiceRate;
                 runInAction(() => {
-                    store.productRate = response.data;
-                    store.purchaseRateList = response.data.purchaseRateList;
-                    store.subscribeRateList = response.data.subscribeRateList;
-                    store.redeemRateList = response.data.redeemRateList;
-                    store.trusteeRatio = response.data.trusteeRatio;
-                    store.manageRatio = response.data.manageRatio;
+                    store.productRate = response?.data;
+                    store.purchaseRateList = response?.data.purchaseRateList;
+                    store.subscribeRateList = response?.data.subscribeRateList;
+                    store.redeemRateList = response?.data.redeemRateList;
+                    store.trusteeRatio = response?.data.trusteeRatio;
+                    store.manageRatio = response?.data.manageRatio;
                     store.saleServiceRate =
                         saleServiceRate && saleServiceRate !== placeholder ? saleServiceRate : null;
                 });

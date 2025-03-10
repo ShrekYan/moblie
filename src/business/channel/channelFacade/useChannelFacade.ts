@@ -3,7 +3,7 @@ import useChannelInfo from "./../useChannelInfo.ts";
 
 const useChannelFacade = () => {
     const channelFnMap = useChannelFnMap();
-    const { getChannelName } = useChannelInfo() || {};
+    const { getChannelName } = useChannelInfo();
 
     return {
         /**

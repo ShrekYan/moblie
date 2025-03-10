@@ -10,6 +10,7 @@ import { useParams, useSearchParams } from "react-router-dom";
 // import {Toast} from 'antd-mobile'
 import useChannelFacade from "@/business/channel/channelFacade/useChannelFacade.ts";
 import classnames from "classnames";
+import ChannelAdapter from "@/components/business/ChannelAdapter";
 import style from "./index.module.scss";
 
 const Demo1: React.FC = () => {
@@ -25,7 +26,7 @@ const Demo1: React.FC = () => {
             productId: productId || ""
         });
 
-        //todo
+        //隔离方法
         channelFacade.pageBack(() => {
             console.log("Demo1 useEffectOnce");
         });
@@ -42,6 +43,11 @@ const Demo1: React.FC = () => {
         } = store;
         return (
             <div className={style.rateStructureContainer}>
+                {/*渠道适配组件*/}
+                <ChannelAdapter galaxyComponent={<div>galaxy component</div>}>
+                    <div>default component</div>
+                </ChannelAdapter>
+
                 {/*销售服务费率*/}
                 {saleServiceRate && (
                     <div className={style.saleServeRate}>

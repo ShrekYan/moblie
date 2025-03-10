@@ -1,8 +1,6 @@
-import useDefaultFnMap from "./default/useGalaxyFnMap.ts";
+import useDefaultFnMap from "./default/useDefaultFnMap.ts";
 import useGalaxyFnMap from "./galaxy/useGalaxyFnMap.ts";
 import { ChannelInfoMap } from "@/utils/constants/enum.channel.ts";
-
-//type ChannelType = typeof ChannelInfoMap[keyof typeof ChannelInfoMap];
 
 type ChannelFnMap = {
     [key in string]: ReturnType<typeof useGalaxyFnMap> | ReturnType<typeof useDefaultFnMap>;
