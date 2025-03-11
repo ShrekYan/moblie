@@ -4,20 +4,19 @@ import { useEffectOnce } from "react-use";
 import { useObserver } from "mobx-react";
 import PurchaseRateRow from "./components/PurchaseRateRow/index.tsx";
 import type { QueryProductRateResponse } from "@/types/responses/product/queryProductRate.ts";
-// import { Toast, Button } from "antd-mobile";
 import { useParams, useSearchParams } from "react-router-dom";
-// import queryString from 'query-string'
-// import {Toast} from 'antd-mobile'
 import useChannelFacade from "@/business/channel/channelFacade/useChannelFacade.ts";
 import classnames from "classnames";
 import ChannelAdapter from "@/components/business/ChannelAdapter";
 import style from "./index.module.scss";
+import createUseEventEmitter from "@/utils/event/useEventEmitter.ts";
 
 const Demo1: React.FC = () => {
     const store = useStore();
     const paramsResult = useParams();
     const [searchParams] = useSearchParams();
     const channelFacade = useChannelFacade();
+    const emitter = createUseEventEmitter<{ userLogin: [{ loginStatus: "login" }] }>();
 
     useEffectOnce(() => {
         // /#/demo/622543?productId=622543
@@ -29,6 +28,13 @@ const Demo1: React.FC = () => {
         //隔离方法
         channelFacade.pageBack(() => {
             console.log("Demo1 useEffectOnce");
+        });
+    });
+
+    useEffectOnce(() => {
+        emitter.trigger("userLogin", { loginStatus: "login" });
+        emitter.listen("userLogin", (data) => {
+            console.log(data.loginStatus);
         });
     });
 

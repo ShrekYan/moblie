@@ -5,6 +5,7 @@ import useFetchByPromise from "@/utils/http/useFetchByPromise.ts";
 import useLocalStorage from "@/utils/storage/useLocalStorage.ts";
 import { BOSS_CONFIG } from "@/utils/constants/constants.ts";
 import SDKLoad from "@/core-tools/sdk/SdkLoad.tsx";
+import GlobalConfig from "@/components/business/GlobalConfig/index.tsx";
 
 /**
  * 冷启动：冷启动是指程序或系统从完全关闭的状态重新启动
@@ -26,7 +27,15 @@ const ColdStart: React.FC<{ RouteList: React.ReactElement }> = ({ RouteList }) =
         }
     }, [data]);
 
-    return show ? <SDKLoad RouteList={RouteList} /> : <PageLoading />;
+    return show ? (
+        <>
+            {/*全局配置加载*/}
+            <GlobalConfig />
+            <SDKLoad RouteList={RouteList} />
+        </>
+    ) : (
+        <PageLoading />
+    );
 };
 
 export default ColdStart;

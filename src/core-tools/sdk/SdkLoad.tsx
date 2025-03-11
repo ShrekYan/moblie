@@ -5,7 +5,7 @@ import PageLoading from "@/components/common/PageLoading/PageLoading.tsx";
 import useChannelInfo from "@/business/channel/useChannelInfo.ts";
 import useChannelMap from "@/business/channel/channelConfig/index.ts";
 import { createScript } from "./handle.ts";
-import type { ChannelInfo } from "@/types/common/channelInfo.ts";
+import type { ChannelInfo } from "@/types/common/channel/channelInfo.ts";
 import { ChannelInfoMap } from "@/utils/constants/enum.channel.ts";
 
 /**

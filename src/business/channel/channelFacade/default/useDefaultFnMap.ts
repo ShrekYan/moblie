@@ -1,4 +1,4 @@
-import type { ChannelFnMap } from "@/types/common/channelFnMap.ts";
+import type { ChannelFnMap } from "@/types/common/channel/channelFnMap.ts";
 
 const useDefaultFnMap = (): ChannelFnMap => {
     return {};

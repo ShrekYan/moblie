@@ -1,4 +1,4 @@
-import type { ChannelActionFnMap } from "@/types/common/channelActionFnMap.ts";
+import type { ChannelActionFnMap } from "@/types/common/channel/channelActionFnMap.ts";
 import type { QueryProductRateRequest } from "@/types/requests/product/queryProductRate.ts";
 import useApi from "@/utils/http/useApi.ts";
 

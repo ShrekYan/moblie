@@ -1,5 +1,5 @@
 import http from "@/core-tools/http";
-import type { QryBossConfigurationResponse } from "@/types/responses/config/qryBossConfiguration.ts";
+import type { BossConfigurationListResponse } from "@/types/responses/config/qryBossConfiguration.ts";
 import type { QryBossConfigurationRequest } from "@/types/requests/config/qryBossConfiguration.ts";
 
 /**
@@ -7,7 +7,7 @@ import type { QryBossConfigurationRequest } from "@/types/requests/config/qryBos
  * @param params
  */
 const qryBossConfiguration = (params: QryBossConfigurationRequest) => {
-    return http.post<QryBossConfigurationRequest, QryBossConfigurationResponse>(
+    return http.post<QryBossConfigurationRequest, BossConfigurationListResponse>(
         "/v1/plate/qryBossConfiguration",
         params,
         { isLoading: false }

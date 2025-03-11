@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import useLocalStorage from "@/utils/storage/useLocalStorage.ts";
 import { CHANNEL_INFO } from "@/utils/constants/constants.channel.ts";
-import { ChannelInfo } from "@/types/common/channelInfo.ts";
+import { ChannelInfo } from "@/types/common/channel/channelInfo.ts";
 
 const useChannelInfo = <T extends ChannelInfo>() => {
     const localStorage = useLocalStorage();

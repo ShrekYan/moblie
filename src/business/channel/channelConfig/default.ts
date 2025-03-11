@@ -1,5 +1,5 @@
 import useLocalStorage from "@/utils/storage/useLocalStorage.ts";
-import type { ChannelConfig, ChannelInfo } from "@/types/common/channelInfo.ts";
+import type { ChannelConfig, ChannelInfo } from "@/types/common/channel/channelInfo.ts";
 import { ChannelInfoMap } from "@/utils/constants/enum.channel.ts";
 import useChannelInfo from "@/business/channel/useChannelInfo.ts";
 
