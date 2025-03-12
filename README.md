@@ -60,6 +60,9 @@ userId: string;
   * 迁移有价值的组件库或者功能
     * tableScroll（可作为私有组件库 ）
     * order可以使用mobx中的reaction
+    * slideTabs
+    * 自定义密码弹窗（PasswordModal）
+    * 倒计时组件（DateCountDown）
 ~~* 全局组件控制逻辑~~
   ~~* 大屏广告~~
   ~~* 采用策略模式触发不同组件（缺少周期管理）~~
