@@ -18,7 +18,16 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@api/*":["./src/api/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@business/*": ["./src/business/*"],
+      "@components/*": ["./src/components/*"],
+      "@core-tools/*": ["./src/core-tools/*"],
+      "@page/*": ["./src/pages/*"],
+      "@routes/*": ["./src/routes/*"],
+      "@local-types/*": ["./src/types/*"],
+      "@utils/*": ["./src/utils/*"]
     }
   },
   "include": ["vite.config.ts","src/global.d.ts"]

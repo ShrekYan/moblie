@@ -3,13 +3,13 @@ import useStore from "./useStore.ts";
 import { useEffectOnce } from "react-use";
 import { useObserver } from "mobx-react";
 import PurchaseRateRow from "./components/PurchaseRateRow/index.tsx";
-import type { QueryProductRateResponse } from "@/types/responses/product/queryProductRate.ts";
+import type { QueryProductRateResponse } from "@local-types/responses/product/queryProductRate.ts";
 import { useParams, useSearchParams } from "react-router-dom";
-import useChannelFacade from "@/business/channel/channelFacade/useChannelFacade.ts";
+import useChannelFacade from "@business/channel/channelFacade/useChannelFacade.ts";
 import classnames from "classnames";
-import ChannelAdapter from "@/components/business/ChannelAdapter";
+import ChannelAdapter from "@components/business/ChannelAdapter";
 import style from "./index.module.scss";
-import createUseEventEmitter from "@/utils/event/useEventEmitter.ts";
+import createUseEventEmitter from "@utils/event/useEventEmitter.ts";
 
 const Demo1: React.FC = () => {
     const store = useStore();

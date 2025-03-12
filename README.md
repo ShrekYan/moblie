@@ -44,7 +44,7 @@ userId: string;
 ~~* 与app交互（WebViewJavascriptBridge）~~
   ~~* https://github.com/marcuswestin/WebViewJavascriptBridge~~
   ~~* https://github.com/Lision/WKWebViewJavascriptBridge~~
-* 别名设计
+~~* 别名设计~~
 
 ### 具体功能
 ~~* 登陆权限管理~~
