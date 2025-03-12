@@ -41,9 +41,9 @@ userId: string;
   * ~~url链接加密~~
 * ~~添加React错误组件ErrorBoundary~~
 * 设计business hooks（这个business尚存问题，后期实战后再做调整）
-* 与app交互（WebViewJavascriptBridge）
-  * https://github.com/marcuswestin/WebViewJavascriptBridge
-  * https://github.com/Lision/WKWebViewJavascriptBridge
+~~* 与app交互（WebViewJavascriptBridge）~~
+  ~~* https://github.com/marcuswestin/WebViewJavascriptBridge~~
+  ~~* https://github.com/Lision/WKWebViewJavascriptBridge~~
 * 别名设计
 
 ### 具体功能
@@ -53,9 +53,9 @@ userId: string;
 * 图表
 * 微服务、
 * 原项目组件库
-* 全局组件控制逻辑
-  * 大屏广告
-  * 采用策略模式触发不同组件（缺少周期管理）
+~~* 全局组件控制逻辑~~
+  ~~* 大屏广告~~
+  ~~* 采用策略模式触发不同组件（缺少周期管理）~~
   ~~* 项目冷启动（全局初始化、自动登录、skd加载）、sdk加载~~
   ~~* 接入第三方渠道、第三方渠道方法隔离~~
   ~~* 包括方法隔离和接口隔离~~
