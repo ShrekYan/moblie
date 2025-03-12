@@ -45,6 +45,9 @@ userId: string;
   ~~* https://github.com/marcuswestin/WebViewJavascriptBridge~~
   ~~* https://github.com/Lision/WKWebViewJavascriptBridge~~
 ~~* 别名设计~~
+~~* 增加适配移动端的video和audio~~
+* 项目中支持的组件库有：
+  * xxxx（后续补充）
 
 ### 具体功能
 ~~* 登陆权限管理~~
