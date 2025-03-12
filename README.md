@@ -44,9 +44,10 @@ userId: string;
 ~~* 与app交互（WebViewJavascriptBridge）~~
   ~~* https://github.com/marcuswestin/WebViewJavascriptBridge~~
   ~~* https://github.com/Lision/WKWebViewJavascriptBridge~~
+* H5项目和微信小程序交互
 ~~* 别名设计~~
 ~~* 增加适配移动端的video和audio~~
-* 项目中支持的组件库有：
+* 项目中支持的组件库以及支持的功能：
   * xxxx（后续补充）
 
 ### 具体功能
@@ -56,6 +57,7 @@ userId: string;
 * 图表
 * 微服务、
 * 原项目组件库
+  * 迁移有价值的组件库
 ~~* 全局组件控制逻辑~~
   ~~* 大屏广告~~
   ~~* 采用策略模式触发不同组件（缺少周期管理）~~

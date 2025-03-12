@@ -1,0 +1,28 @@
+.network-wrap {
+  .network {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    width: 100%;
+    height: 80px;
+    line-height: 85px;
+    background: #fefcc5;
+    color: #fd7753;
+    font-size: 30px;
+
+    .container {
+      padding-left:30px;
+      height: 80px;
+      position: relative;
+
+      .refresh {
+        position: absolute;
+        top: 0;
+        right: 20px;
+        height: 80px;
+        line-height: 85px;
+        color: #659ee5;
+      }
+    }
+  }
+}
