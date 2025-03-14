@@ -19,7 +19,6 @@ const Order: React.FC = () => {
         }
     });
     useEffect(() => {
-        console.log("进入 Effect");
         const purchaseOrder = purchaseOrderFactory.initInstance();
         setPurchaseOrder(purchaseOrder);
     }, []);

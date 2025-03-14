@@ -10,6 +10,7 @@ import classnames from "classnames";
 import ChannelAdapter from "@components/business/ChannelAdapter";
 import style from "./index.module.scss";
 import createUseEventEmitter from "@utils/event/useEventEmitter.ts";
+import FloatButton from "@components/common/FloatButton/index.tsx";
 
 const Demo1: React.FC = () => {
     const store = useStore();
@@ -53,7 +54,8 @@ const Demo1: React.FC = () => {
                 <ChannelAdapter galaxyComponent={<div>galaxy component</div>}>
                     <div>default component</div>
                 </ChannelAdapter>
-
+                {/*悬浮*/}
+                <FloatButton url={"https://static.zocaifu.com/sarli/file/04/1741664195246.gif"} />
                 {/*销售服务费率*/}
                 {saleServiceRate && (
                     <div className={style.saleServeRate}>
