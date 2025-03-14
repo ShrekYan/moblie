@@ -59,7 +59,7 @@ userId: string;
 * 原项目组件库
   * 迁移有价值的组件库或者功能
     * tableScroll（可作为私有组件库 ）
-    * order可以使用mobx中的reaction
+    ~~* order可以使用mobx中的reaction~~
     * slideTabs
     * 自定义密码弹窗（PasswordModal）
     * 倒计时组件（DateCountDown）

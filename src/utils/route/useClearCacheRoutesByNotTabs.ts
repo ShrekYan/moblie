@@ -3,7 +3,7 @@ import { useAliveController } from "react-activation";
 import type { RouteConfig } from "@/routes";
 
 const useClearCacheRoutesByNotTabs = (routeConfig: RouteConfig) => {
-    const { clear, getCachingNodes } = useAliveController();
+    const { getCachingNodes, drop } = useAliveController();
     /**
      * 清空缓存nodes
      */
@@ -17,8 +17,8 @@ const useClearCacheRoutesByNotTabs = (routeConfig: RouteConfig) => {
                 const cacheNodes = getCachingNodes();
                 //有缓存节点再进行清理
                 if (cacheNodes?.length > 0) {
-                    //清空所有的缓存节点数据
-                    clear();
+                    //清除所有tab页面的缓存数据
+                    drop(/\/tab\/[^/]+/g);
                 }
             }
         }

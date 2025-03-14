@@ -8,8 +8,10 @@ type UseSessionStorage = {
     keys(callback?: (err: any, keys: string[]) => void): string[];
 };
 
-const useSessionStorage = (): UseSessionStorage => {
+const createSessionStorage = (): UseSessionStorage => {
     const prefix = "galaxy/";
+
+    const sessionStorage = window.sessionStorage;
 
     /**
      * 获取完整的key
@@ -105,6 +107,12 @@ const useSessionStorage = (): UseSessionStorage => {
             }
         }
     };
+};
+
+export const sessionStorage = createSessionStorage();
+
+const useSessionStorage = () => {
+    return sessionStorage;
 };
 
 export default useSessionStorage;

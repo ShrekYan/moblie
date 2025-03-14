@@ -8,7 +8,7 @@ type UseLocalStorage = {
     keys(callback?: (err: any, keys: string[]) => void): string[];
 };
 
-const useLocalStorage = (): UseLocalStorage => {
+const createLocalStorage = (): UseLocalStorage => {
     const prefix = "galaxy/";
 
     /**
@@ -19,12 +19,14 @@ const useLocalStorage = (): UseLocalStorage => {
         return `${prefix}${key}`;
     };
 
+    const windowLocalStorage = window.localStorage;
+
     return {
         getItem<T>(key: string, callback?: (err: any, value: T | null) => void) {
             const fullKey = getFullKey(key);
             try {
-                const value = localStorage.getItem(fullKey);
-                const parsedValue = value ? (JSON.parse(value) as T) : value;
+                const value = windowLocalStorage.getItem(fullKey);
+                const parsedValue = value ? (JSON.parse(value as string) as T) : value;
                 if (callback) {
                     callback(null, parsedValue as T);
                 }
@@ -44,7 +46,7 @@ const useLocalStorage = (): UseLocalStorage => {
             const fullKey = getFullKey(key);
             try {
                 const serializedValue = JSON.stringify(value);
-                localStorage.setItem(fullKey, serializedValue);
+                windowLocalStorage.setItem(fullKey, serializedValue);
                 if (callback) {
                     callback(null, serializedValue as T);
                 }
@@ -59,7 +61,7 @@ const useLocalStorage = (): UseLocalStorage => {
         removeItem(key: string, callback?: (err: any) => void) {
             const fullKey = getFullKey(key);
             try {
-                localStorage.removeItem(fullKey);
+                windowLocalStorage.removeItem(fullKey);
                 return Promise.resolve();
             } catch (error) {
                 callback?.(error);
@@ -68,7 +70,7 @@ const useLocalStorage = (): UseLocalStorage => {
         },
         clear(callback?: (err: any) => void) {
             try {
-                localStorage.clear();
+                windowLocalStorage.clear();
                 callback?.(null);
             } catch (error) {
                 callback?.(error);
@@ -76,7 +78,7 @@ const useLocalStorage = (): UseLocalStorage => {
         },
         length(callback?: (err: any, numberOfKeys: number | null) => void) {
             try {
-                const numberOfKeys = localStorage.length;
+                const numberOfKeys = windowLocalStorage.length;
                 callback?.(null, numberOfKeys);
                 return numberOfKeys;
             } catch (error) {
@@ -86,7 +88,7 @@ const useLocalStorage = (): UseLocalStorage => {
         },
         key(keyIndex: number, callback?: (err: any, key: string | null) => void) {
             try {
-                const key: string = localStorage.key(keyIndex) || "";
+                const key: string = windowLocalStorage.key(keyIndex) || "";
                 callback?.(null, key);
                 return key;
             } catch (error) {
@@ -96,7 +98,7 @@ const useLocalStorage = (): UseLocalStorage => {
         },
         keys(callback?: (err: any, keys: string[]) => void) {
             try {
-                const keys: string[] = localStorage.keys(callback) || [];
+                const keys: string[] = windowLocalStorage.keys(callback) || [];
                 callback?.(null, keys);
                 return keys;
             } catch (error) {
@@ -105,6 +107,12 @@ const useLocalStorage = (): UseLocalStorage => {
             }
         }
     };
+};
+
+export const localStorage: UseLocalStorage = createLocalStorage();
+
+const useLocalStorage = () => {
+    return localStorage;
 };
 
 export default useLocalStorage;

@@ -36,6 +36,10 @@ const Home: React.FC = () => {
                 跳转到费率结构页面
             </Button>
             <div className={style.test}></div>
+            <div>
+                cacheInput:
+                <input />
+            </div>
         </div>
     );
 };

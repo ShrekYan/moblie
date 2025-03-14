@@ -98,7 +98,6 @@ const AuthComponent: React.FC<{
     if (checkLoginAuthConfig(routeConfig)) {
         //如果需要进行登陆权限授权
         if (!userInfo) {
-            console.log(routeConfig.fullPath);
             return <Navigate to={`/login${backPathQueryString}`} replace={true} />;
         }
     }

@@ -18,11 +18,7 @@ export const getRouteComponent = (routeItemConfig: RouteConfig) => {
     return (
         <>
             {cacheFlag ? (
-                <KeepAlive
-                    cacheKey={fullPath}
-                    id={routeItemConfig.path}
-                    name={routeItemConfig.path}
-                >
+                <KeepAlive cacheKey={fullPath} id={routeItemConfig.path} name={fullPath}>
                     <Suspense fallback={<PageLoading />}>
                         {routeItemConfig.component ? (
                             Component && !isValidElement ? (

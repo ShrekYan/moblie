@@ -93,6 +93,17 @@ const DemoRoutes: RouteConfig[] = [
                 path: "HTML2Canvas",
                 component: lazy(() => import("@/pages/Demo/HTML2Canvas/index.tsx")),
                 pageName: "HTML2Canvas"
+            },
+            {
+                path: "order",
+                component: lazy(() => import("@/pages/Demo/Order/index.tsx")),
+                pageName: "order",
+                cache: true
+            },
+            {
+                path: "order/list",
+                component: lazy(() => import("@/pages/Demo/Order/components/List/index.tsx")),
+                pageName: "order/list"
             }
         ]
     }
