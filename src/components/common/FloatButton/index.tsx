@@ -46,14 +46,26 @@ const FloatButton: React.FC<{ url: string }> = ({ url }) => {
     }, []);
     //监听元素手势滑动
     useEffect(() => {
-        const hammer = new Hammer(floatButtonElementRef.current as HTMLDivElement);
-        hammer.get("pan").set({ direction: Hammer.DIRECTION_ALL });
+        const hammer = new Hammer(floatButtonElementRef.current as HTMLDivElement, {
+            touchAction: "none", // 禁用浏览器默认触摸行为
+            domEvents: true, // 启用 DOM 事件
+            inputClass: Hammer.TouchInput // 强制使用触摸输入
+        });
+
+        // 配置 pan 识别器
+        hammer.get("pan").set({
+            direction: Hammer.DIRECTION_ALL,
+            threshold: 1, // 更灵敏的触发阈值
+            pointers: 1 // 单指操作
+        });
 
         hammer.on("panstart", (event) => {
+            event.preventDefault(); // 关键代码
             startPointRef.current.x = event.deltaX;
             startPointRef.current.y = event.deltaY;
         });
         hammer.on("panmove", (event) => {
+            event.preventDefault(); // 关键代码
             endPointRef.current.x = event.deltaX;
             endPointRef.current.y = event.deltaY;
             const move = {
@@ -63,7 +75,8 @@ const FloatButton: React.FC<{ url: string }> = ({ url }) => {
             handleMove(move);
         });
 
-        hammer.on("panend", () => {
+        hammer.on("panend", (event) => {
+            event.preventDefault(); // 关键代码
             const currentOffset = {
                 x: offsetPointRef.current.x + (endPointRef.current.x - startPointRef.current.x),
                 y: offsetPointRef.current.y + (endPointRef.current.y - startPointRef.current.y)
@@ -99,6 +112,8 @@ const FloatButton: React.FC<{ url: string }> = ({ url }) => {
             }
             //移动位置
             handleMove(move);
+
+            console.log(move);
             //设置偏移位
             offsetPointRef.current = {
                 x: move.x,
