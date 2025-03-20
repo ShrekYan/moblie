@@ -23,20 +23,23 @@ export const getRouteComponent = (routeItemConfig: RouteConfig) => {
                         {routeItemConfig.component ? (
                             Component && !isValidElement ? (
                                 /*JSXElementConstructor*/
-                                <Component {...routeItemConfig} />
+                                <Component routeItemConfig={routeItemConfig} />
                             ) : (
                                 /*组件实例*/
                                 React.cloneElement(
                                     routeItemConfig.component as React.ReactElement,
                                     {
-                                        ...routeItemConfig
-                                    }
+                                        routeItemConfig: routeItemConfig
+                                    } as React.Attributes
                                 )
                             )
                         ) : (
-                            React.cloneElement(routeItemConfig.element as React.ReactElement, {
-                                ...routeItemConfig
-                            })
+                            React.cloneElement(
+                                routeItemConfig.element as React.ReactElement,
+                                {
+                                    routeItemConfig: routeItemConfig
+                                } as React.Attributes
+                            )
                         )}
                     </Suspense>
                 </KeepAlive>
@@ -48,15 +51,21 @@ export const getRouteComponent = (routeItemConfig: RouteConfig) => {
                             <Component {...routeItemConfig} />
                         ) : (
                             /*组件实例*/
-                            React.cloneElement(routeItemConfig.component as React.ReactElement, {
-                                ...routeItemConfig
-                            })
+                            React.cloneElement(
+                                routeItemConfig.component as React.ReactElement,
+                                {
+                                    routeItemConfig: routeItemConfig
+                                } as React.Attributes
+                            )
                         )
                     ) : (
                         /*组件实例*/
-                        React.cloneElement(routeItemConfig.element as React.ReactElement, {
-                            ...routeItemConfig
-                        })
+                        React.cloneElement(
+                            routeItemConfig.element as React.ReactElement,
+                            {
+                                routeItemConfig: routeItemConfig
+                            } as React.Attributes
+                        )
                     )}
                 </Suspense>
             )}

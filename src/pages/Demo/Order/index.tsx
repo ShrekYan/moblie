@@ -1,21 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { useObserver } from "mobx-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { purchaseOrderFactory } from "@business/order/flow/index.ts";
 import { useActivate, useAliveController, useUnactivate } from "react-activation";
 import Purchase from "@business/order/flow/purchaseOrderFactory/Purchase.ts";
+import type { RouteConfig } from "@/routes";
+import { delay } from "es-toolkit";
 
-const Order: React.FC = () => {
+const Order: React.FC<{
+    routeItemConfig: RouteConfig;
+}> = ({ routeItemConfig }) => {
     const [purchaseOrder, setPurchaseOrder] = useState<Purchase>();
     const navigate = useNavigate();
+    const location = useLocation();
     const { drop } = useAliveController();
+    console.log(routeItemConfig);
+
     useActivate(() => {});
+
     useUnactivate(() => {
+        console.log(location);
         //清除页面缓存
         if (window.location.href.indexOf("order") === -1) {
-            setTimeout(() => {
+            delay(0).then(() => {
                 drop("/demo/order");
-            }, 0);
+            });
         }
     });
     useEffect(() => {

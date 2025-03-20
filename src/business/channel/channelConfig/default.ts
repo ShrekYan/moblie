@@ -7,7 +7,7 @@ const useDefaultConfig = () => {
     const localStorage = useLocalStorage();
     const { setChannelInfo } = useChannelInfo<ChannelInfo>();
     const galaxyConfig: ChannelConfig = {
-        sdk: ["https://static.qiangungun.com/sarli/jssdk/minProgram/jweixin-1.2.0.js"],
+        sdk: ["https://dev-galaxy.qiangungun.com/externalChannels/build/plugin/jweixin-1.0.0.js"],
         loadSdkRouteFragment: ChannelInfoMap.DEFAULT,
         //渠道名称
         channelName: ChannelInfoMap.DEFAULT,
