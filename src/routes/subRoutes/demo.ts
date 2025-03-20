@@ -104,6 +104,11 @@ const DemoRoutes: RouteConfig[] = [
                 path: "order/list",
                 component: lazy(() => import("@/pages/Demo/Order/components/List/index.tsx")),
                 pageName: "order/list"
+            },
+            {
+                path: "video",
+                component: lazy(() => import("@/pages/Demo/Video/index.tsx")),
+                pageName: "video"
             }
         ]
     }
