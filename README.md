@@ -56,6 +56,12 @@ userId: string;
   ~~* 登录后返回上一级页面~~~~
 * 图表
 * 微服务、
+  * @originjs/vite-plugin-federation（模块联邦）
+    * 主子应用build必须使用"esnext"，对于低版本的浏览器兼容不太好，模块联邦对于本地开发模式调试不便（vite）
+      * 项目中可以使用组件、公用方法、单独的应用
+      * 推荐使用Monorepo家狗管理多微应用和主应用
+  * qiankun
+    * xxx
 * 原项目组件库
   * 迁移有价值的组件库或者功能
     * tableScroll（可作为私有组件库 ）
