@@ -60,8 +60,10 @@ userId: string;
     * 主子应用build必须使用"esnext"，对于低版本的浏览器兼容不太好，模块联邦对于本地开发模式调试不便（vite）
       * 项目中可以使用组件、公用方法、单独的应用
       * 推荐使用Monorepo家狗管理多微应用和主应用
-  * qiankun
-    * xxx
+      * React和Vue都可以混用，但是需要做适配器，最好的方式还是统一技术（react）
+  * qiankun和originjs/vite-plugin-federation区别
+    * qiankun可以兼容古老的项目和不可构建的项目，qiankun作为中心基座，控制路由和参数传递，各个项目可以独立运行。
+    * 模块联邦仅支持编译成模块联邦的项目（vite、webpack等）无编译的不可使用。无中心化，任何项目都可以集成，各个项目作为依赖项被引用。
 * 原项目组件库
   * 迁移有价值的组件库或者功能
     * tableScroll（可作为私有组件库 ）

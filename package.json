@@ -76,6 +76,7 @@
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
     "@eslint/js": "^9.11.1",
+    "@originjs/vite-plugin-federation": "^1.4.0",
     "@rollup/plugin-image": "^3.0.3",
     "@types/crypto-js": "^4.2.2",
     "@types/hammerjs": "^2.0.46",
