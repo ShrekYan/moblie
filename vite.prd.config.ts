@@ -1,11 +1,11 @@
 import react from "@vitejs/plugin-react";
-//import legacy from "@vitejs/plugin-legacy";
+import legacy from "@vitejs/plugin-legacy";
 import { visualizer } from "rollup-plugin-visualizer";
 import path from "path";
 import { ConfigEnv, UserConfig } from "vite";
 import removeConsole from "vite-plugin-remove-console";
 import { viteVConsole } from "vite-plugin-vconsole";
-import federation from "@originjs/vite-plugin-federation";
+//import federation from "@originjs/vite-plugin-federation";
 //import checker from 'vite-plugin-checker'
 //gzip
 //import { compression } from 'vite-plugin-compression2'
@@ -25,21 +25,21 @@ export default (config: ConfigEnv) => {
         cacheDir: "node_modules/.vite",
         plugins: [
             //模块联邦
-            federation({
-                remotes: {
-                    reactSubapp: "http://localhost:5725/assets/remoteEntry.js" // 子应用部署地址
-                },
-                shared: [
-                    "react",
-                    "react-dom",
-                    {
-                        "react-router-dom": {
-                            singleton: true,
-                            eager: true
-                        }
-                    } as never
-                ]
-            }),
+            // federation({
+            //     remotes: {
+            //         reactSubapp: "http://localhost:5725/assets/remoteEntry.js" // 子应用部署地址
+            //     },
+            //     shared: [
+            //         "react",
+            //         "react-dom",
+            //         {
+            //             "react-router-dom": {
+            //                 singleton: true,
+            //                 eager: true
+            //             }
+            //         } as never
+            //     ]
+            // }),
             //可以通过nginx配置GZIP
             /*     compression(),*/
             /*   cdn({
@@ -63,7 +63,7 @@ export default (config: ConfigEnv) => {
               }),*/
             react(),
             //开启模块联邦不适用legacy
-            //legacy(),
+            legacy(),
             removeConsole(),
             {
                 ...visualizer({
@@ -128,8 +128,8 @@ export default (config: ConfigEnv) => {
         },
         build: {
             //开启模块联邦不适用 targets: ["ie >= 10", ">0.3%, ios >= 9"],
-            //targets: ["ie >= 10", ">0.3%, ios >= 9"],
-            target:["esnext"],
+            targets: ["ie >= 10", ">0.3%, ios >= 9"],
+            //target:["esnext"],
             modulePreload: true,
             outDir: "./dist",
             assetsDir: "./assets",

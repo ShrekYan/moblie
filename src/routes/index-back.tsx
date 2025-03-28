@@ -1,10 +1,10 @@
-import { useRoutes, Navigate } from "react-router-dom";
+import type { RouteObject } from "react-router-dom";
+import { Navigate, useRoutes } from "react-router-dom";
 import { getRouteComponent } from "./handle.tsx";
 import Interceptor from "./Interceptor.tsx";
 import ColdStart from "@/routes/ColdStart.tsx";
 import tabRoutes from "./tabRoutes.tsx";
 import subRoutes from "./subRoutes";
-import type { RouteObject } from "react-router-dom";
 import React from "react";
 
 export type RouteConfig = RouteObject & {
@@ -53,21 +53,45 @@ const generateRouter = (routes: RouteConfig[]) => {
     });
 };
 
-//生成路由列表
-const allRouteList = generateRouter(
-    enhanceRoutes([
-        ...tabRoutes,
-        ...subRoutes,
-        {
-            //页面404时跳转到首页
-            path: "*",
-            component: <Navigate to={"/tab/home"} replace />,
-            pageName: "404"
-        }
-    ])
-);
-
 export default () => {
-    const RouteList = useRoutes(allRouteList) as React.ReactElement;
+    const [subRoutes1, setSubRoutes1] = React.useState<RouteConfig[]>([]);
+
+    React.useEffect(() => {
+        const SubAppLayout = React.lazy(() => import("reactSubapp/Router"));
+        const allRouteList = generateRouter(
+            enhanceRoutes([
+                ...tabRoutes,
+                ...subRoutes,
+                {
+                    //页面404时跳转到首页
+                    path: "*",
+                    component: <Navigate to={"/tab/home"} replace />,
+                    pageName: "404"
+                }
+            ])
+        );
+        // 动态加载子应用路由配置
+        import("reactSubapp/routes")
+            .then((module) => {
+                setSubRoutes1([
+                    ...allRouteList,
+                    {
+                        path: "/subapp/*", // 关键：使用通配符匹配子应用路径
+                        element: (
+                            <React.Suspense>
+                                {/*可以设置用户信息等等，相关操作*/}
+                                <SubAppLayout />
+                            </React.Suspense>
+                        ), // 子应用的布局容器
+                        children: module.default as any // 导入子应用的路由配置（见Step 2）
+                    }
+                ] as RouteConfig[]);
+            })
+            .catch(() => {
+                //如果加载失败，使用同步路由配置
+                setSubRoutes1(allRouteList);
+            });
+    }, []);
+    const RouteList = useRoutes(subRoutes1) as React.ReactElement;
     return <ColdStart RouteList={RouteList} />;
 };

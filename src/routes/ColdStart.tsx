@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import useApi from "@/utils/http/useApi.ts";
-import PageLoading from "@/components/common/PageLoading/PageLoading.tsx";
+import { PageLoading } from "react-awesome-all-component";
 import useFetchByPromise from "@/utils/http/useFetchByPromise.ts";
 import useLocalStorage from "@/utils/storage/useLocalStorage.ts";
 import { BOSS_CONFIG } from "@/utils/constants/constants.ts";

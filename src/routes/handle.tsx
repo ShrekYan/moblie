@@ -1,7 +1,7 @@
 import React from "react";
 import { Suspense } from "react";
 import KeepAlive from "react-activation";
-import PageLoading from "../components/common/PageLoading/PageLoading.tsx";
+import { PageLoading } from "react-awesome-all-component";
 import type { RouteConfig } from "@/routes/index.tsx";
 
 export const getRouteComponent = (routeItemConfig: RouteConfig) => {

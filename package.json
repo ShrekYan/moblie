@@ -50,6 +50,7 @@
     "query-string": "^9.1.1",
     "react": "^18.3.1",
     "react-activation": "^0.12.4",
+    "react-awesome-all-component": "file:.yalc/react-awesome-all-component",
     "react-countup": "^6.5.3",
     "react-dom": "^18.3.1",
     "react-error-boundary": "^5.0.0",

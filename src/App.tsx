@@ -1,8 +1,7 @@
 import { HashRouter } from "react-router-dom";
 import { AliveScope } from "react-activation";
 import RouteList from "./routes/index.tsx";
-import ErrorBoundary from "./components/common/ErrorBoundary";
-import Network from "@components/common/Network";
+import { ErrorBoundary, Network } from "react-awesome-all-component";
 import "./styles.css";
 
 function App() {

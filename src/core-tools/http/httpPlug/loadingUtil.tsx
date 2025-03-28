@@ -1,5 +1,5 @@
 import { createRoot } from "react-dom/client";
-import Loading from "@/components/common/Loading/Loading.tsx";
+import { Loading } from "react-awesome-all-component";
 
 const loadingUtil = {
     showLoading() {
