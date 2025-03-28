@@ -12,7 +12,6 @@ import style from "./index.module.scss";
 import createUseEventEmitter from "@utils/event/useEventEmitter.ts";
 // import { FloatButton } from "react-awesome-all-component";
 import { FloatButton } from "react-awesome-all-component";
-import "react-awesome-all-component/dist/es/components/FloatButton/index.css";
 
 const Demo1: React.FC = () => {
     const store = useStore();
