@@ -22,6 +22,10 @@ const SDKLoad: React.FC<{ RouteList: React.ReactElement }> = ({ RouteList }) => 
     const { channel: queryChannel, subChannel: querySubChannel } = queryString.parse(
         location.search
     );
+    console.log("queryChannel");
+    console.log(queryChannel);
+    console.log(window.location.href);
+    console.log("queryChannel");
     //获取渠道信息
     useEffect(() => {
         //从缓存中获取渠道信息

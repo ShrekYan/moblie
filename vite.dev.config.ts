@@ -2,6 +2,7 @@ import react from "@vitejs/plugin-react";
 //import federation from "@originjs/vite-plugin-federation";
 import path from "path";
 import { ConfigEnv, UserConfig } from "vite";
+import { viteVConsole } from "vite-plugin-vconsole";
 
 export default (config: ConfigEnv) => {
     console.log(config);
@@ -37,7 +38,14 @@ export default (config: ConfigEnv) => {
             //     ...image(),
             //     enforce: 'pre'
             // },
-            react()
+            react(),
+            viteVConsole({
+                entry: path.resolve(__dirname, "./src/main.tsx"),
+                enabled: true,
+                config: {
+                    theme: "dark"
+                }
+            })
             // legacy()
         ],
         resolve: {

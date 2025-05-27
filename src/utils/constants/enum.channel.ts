@@ -1,4 +1,5 @@
 export enum ChannelInfoMap {
     GALAXY = "galaxy",
-    DEFAULT = "default"
+    DEFAULT = "default",
+    MINNI = "minProgram"
 }

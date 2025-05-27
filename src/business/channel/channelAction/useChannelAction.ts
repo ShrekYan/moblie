@@ -20,7 +20,7 @@ const useChannelAction = (): ChannelActionFnMap => {
         queryProductRateTest(params, callback) {
             const channelName = getChannelName();
             const fnMap = channelActionFnMap[channelName];
-            if (fnMap.queryProductRateTest) {
+            if (fnMap?.queryProductRateTest) {
                 return fnMap.queryProductRateTest(params);
             }
             return callback?.();

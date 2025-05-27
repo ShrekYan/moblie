@@ -12,6 +12,7 @@ import style from "./index.module.scss";
 import createUseEventEmitter from "@utils/event/useEventEmitter.ts";
 // import { FloatButton } from "react-awesome-all-component";
 import { FloatButton } from "react-awesome-all-component";
+import PageHead from "@components/common/PageHead";
 import BottomDesc from "./components/BottomDesc";
 
 const Demo1: React.FC = () => {
@@ -20,7 +21,6 @@ const Demo1: React.FC = () => {
     const [searchParams] = useSearchParams();
     const channelFacade = useChannelFacade();
     const emitter = createUseEventEmitter<{ userLogin: [{ loginStatus: "login" }] }>();
-
     useEffectOnce(() => {
         // /#/demo/622543?productId=622543
         const productId = paramsResult?.productId || searchParams.get("productId");
@@ -29,7 +29,7 @@ const Demo1: React.FC = () => {
         });
 
         //隔离方法
-        channelFacade.pageBack(() => {
+        channelFacade?.pageBack(() => {
             console.log("Demo1 useEffectOnce");
         });
     });
@@ -38,6 +38,12 @@ const Demo1: React.FC = () => {
         emitter.trigger("userLogin", { loginStatus: "login" });
         emitter.listen("userLogin", (data) => {
             console.log(data.loginStatus);
+        });
+    });
+
+    useEffectOnce(() => {
+        channelFacade.setShareInfo({
+            title: "费率结构"
         });
     });
 
@@ -52,6 +58,7 @@ const Demo1: React.FC = () => {
         } = store;
         return (
             <div className={style.rateStructureContainer}>
+                <PageHead title="费率结构" />
                 {/*渠道适配组件*/}
                 <ChannelAdapter galaxyComponent={<div>galaxy component</div>}>
                     <div>default component</div>
