@@ -1,5 +1,6 @@
 import type { IOptions } from "./http.ts";
 import httpFnStore from "./httpFnStore.ts";
+import type { PluginFunction } from "./httpFnStore.ts";
 
 /**
  * http执行前发送的方法
@@ -12,10 +13,10 @@ function beforeMethod<KParams, TResponse>(
     url: string,
     data: KParams,
     options: IOptions,
-    beforeFnList: Function[]
+    beforeFnList: PluginFunction[]
 ): Promise<TResponse | boolean> {
     return new Promise((resolve) => {
-        beforeFnList.map((fn: Function) => {
+        beforeFnList.map((fn: PluginFunction) => {
             fn({ url, data, options });
         });
         resolve(true);
@@ -35,7 +36,7 @@ function finallyMethod<KParams, TResponse>(
     data: KParams,
     options: IOptions,
     resp: TResponse,
-    finallyFnList: Function[]
+    finallyFnList: PluginFunction[]
 ): void {
     finallyFnList.map((fn) => {
         fn({ url, data, options, resp });
@@ -53,7 +54,7 @@ function httpFlow<KParams, TResponse>(
     url: string,
     data: KParams,
     options: IOptions,
-    httpFn: Function
+    httpFn: PluginFunction
 ): Promise<TResponse> {
     const beforeFnList = httpFnStore.getBeforeFn();
     const afterFnList = httpFnStore.getAfterFn();

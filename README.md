@@ -91,6 +91,12 @@ userId: string;
 * jsTest
 
 
+* 问题记录
+  * 配置推荐的eslint貌似不起作用
+  * 导入文件时为什么需要添加尾缀
+
+
+
 
 ### 重要事项
 * 标准的css命名规则：kebab-case

@@ -1,11 +1,12 @@
+export type PluginFunction = (...args: any[]) => any;
 /**
  * Http缓存存储
  */
 class HttpFnStore {
-    beforeFnList: Function[];
-    afterFnList: Function[];
-    errorFnList: Function[];
-    finallyFnList: Function[];
+    beforeFnList: PluginFunction[];
+    afterFnList: PluginFunction[];
+    errorFnList: PluginFunction[];
+    finallyFnList: PluginFunction[];
 
     constructor() {
         this.beforeFnList = [];
@@ -18,7 +19,7 @@ class HttpFnStore {
      * addBeforeFn
      * @param fn
      */
-    addBeforeFn(fn: Function) {
+    addBeforeFn(fn: PluginFunction) {
         this.beforeFnList.push(fn);
     }
 
@@ -26,7 +27,7 @@ class HttpFnStore {
      * addAfterFn
      * @param fn
      */
-    addAfterFn(fn: Function) {
+    addAfterFn(fn: PluginFunction) {
         this.afterFnList.push(fn);
     }
 
@@ -34,7 +35,7 @@ class HttpFnStore {
      * addErrorFn
      * @param fn
      */
-    addErrorFn(fn: Function) {
+    addErrorFn(fn: PluginFunction) {
         this.errorFnList.push(fn);
     }
 
@@ -42,7 +43,7 @@ class HttpFnStore {
      * addFinallyFn
      * @param fn
      */
-    addFinallyFn(fn: Function) {
+    addFinallyFn(fn: PluginFunction) {
         this.finallyFnList.push(fn);
     }
 

@@ -1,7 +1,8 @@
 import httpCore from "./httpCore.ts";
+import type { PluginFunction } from "./httpFnStore.ts";
 import httpFnStore from "./httpFnStore.ts";
-import httpFlow from "./httpFlow.ts";
-import type { AxiosResponse, AxiosRequestConfig } from "axios";
+import httpFlow from "./httpFlow";
+import type { AxiosRequestConfig } from "axios";
 
 /**
  * http options参数
@@ -52,31 +53,35 @@ export type IOptionsAndUndefined = IOptions | undefined;
  */
 export interface IHttp {
     urlPrefix: string;
-    addBeforeFn: (fn: Function) => void;
-    addAfterFn: (fn: Function) => void;
-    addErrorFn: (fn: Function) => void;
-    addFinallyFn: (fn: Function) => void;
-    getRequestUrl: (isCustomUrl: boolean, requestUrl: string, options: IOptions) => string;
-    mergeDefaultOptions: (options: IOptions) => IOptions;
+    addBeforeFn: (fn: PluginFunction) => void;
+    addAfterFn: (fn: PluginFunction) => void;
+    addErrorFn: (fn: PluginFunction) => void;
+    addFinallyFn: (fn: PluginFunction) => void;
+    getRequestUrl: (
+        isCustomUrl: boolean | undefined,
+        requestUrl: string,
+        options: IOptions
+    ) => string;
+    mergeDefaultOptions: (options: IOptionsAndUndefined) => IOptions;
 
     compatibleOldInterface<KParams>(
         params: IOptionsAndUndefined | KParams,
-        options: IOptions
+        options: IOptionsAndUndefined
     ): IOptions;
 
     disposeProps<T>(props: T): T;
 
     post<KParams, TResponse>(
         requestUrl: string,
-        params: AxiosResponse<KParams>,
-        options: IOptions,
+        params: KParams,
+        options: IOptionsAndUndefined,
         headers?: AxiosRequestConfig
     ): Promise<IResponseData<TResponse>>;
 
     get<KParams, TResponse>(
         requestUrl: string,
-        params: AxiosResponse<KParams>,
-        options: IOptions
+        params: AxiosRequestConfig<KParams>,
+        options: IOptionsAndUndefined
     ): Promise<IResponseData<TResponse>>;
 }
 
@@ -102,7 +107,7 @@ class Http implements IHttp {
      * addBeforeFn
      * @param fn
      */
-    addBeforeFn(fn: Function) {
+    addBeforeFn(fn: PluginFunction) {
         httpFnStore.addBeforeFn(fn);
     }
 
@@ -110,7 +115,7 @@ class Http implements IHttp {
      * addAfterFn
      * @param fn
      */
-    addAfterFn(fn: Function) {
+    addAfterFn(fn: PluginFunction) {
         httpFnStore.addAfterFn(fn);
     }
 
@@ -118,7 +123,7 @@ class Http implements IHttp {
      * addErrorFn
      * @param fn
      */
-    addErrorFn(fn: Function) {
+    addErrorFn(fn: PluginFunction) {
         httpFnStore.addErrorFn(fn);
     }
 
@@ -126,7 +131,7 @@ class Http implements IHttp {
      * addFinallyFn
      * @param fn
      */
-    addFinallyFn(fn: Function) {
+    addFinallyFn(fn: PluginFunction) {
         httpFnStore.addFinallyFn(fn);
     }
 
@@ -137,7 +142,7 @@ class Http implements IHttp {
      */
     disposeProps<T>(prop: T): T {
         if (prop === undefined || prop === null) {
-            return {} as T;
+            return {} as T; // 使用类型断言确保返回正确类型
         }
         return prop;
     }
@@ -151,7 +156,7 @@ class Http implements IHttp {
      */
     getRequestUrl(isCustomUrl: boolean | undefined, requestUrl: string, options: IOptions) {
         const urlPrefix = getUrlPrefix(options.urlPrefix, this.urlPrefix);
-        //自定义请求链接
+        // 自定义请求链接
         if (isCustomUrl) {
             return requestUrl;
         } else {
@@ -164,7 +169,7 @@ class Http implements IHttp {
      * @param options
      * @returns {*}
      */
-    mergeDefaultOptions(options: IOptionsAndUndefined) {
+    mergeDefaultOptions(options: IOptionsAndUndefined): IOptions {
         return Object.assign(
             {
                 primitive: true,
@@ -174,12 +179,12 @@ class Http implements IHttp {
                 openExpire: true,
                 isLoading: false,
                 customUrl: false,
-                useUserCacheInfo: true, //使用用户缓存信息
-                errorExitAndCloseLoading: true, //接口报错自动关闭loading
+                useUserCacheInfo: true, // 使用用户缓存信息
+                errorExitAndCloseLoading: true, // 接口报错自动关闭loading
                 backupMockData: false
             },
-            options
-        );
+            options || {} // 添加空对象处理undefined情况
+        ) as IOptions; // 明确断言返回类型为IOptions
     }
 
     /**
@@ -189,41 +194,48 @@ class Http implements IHttp {
      */
     compatibleOldInterface<KParams>(
         params: IOptionsAndUndefined | KParams,
-        options: IOptionsAndUndefined = {} as IOptionsAndUndefined
-    ) {
-        //合并默认options参数
-        options = this.mergeDefaultOptions(options);
-        params = params || {};
+        options: IOptionsAndUndefined = {}
+    ): IOptions {
+        // 合并默认options参数
+        const mergedOptions = this.mergeDefaultOptions(options);
+        const safeParams = params || {};
 
-        //兼容以前老接口options操作
-        const compatibleOptions = {
-            primitive: params.primitive === undefined ? options.primitive : params.primitive,
-            urlPrefix: params.urlPrefix === undefined ? options.urlPrefix : params.urlPrefix,
-            isLoading: params.isLoading === undefined ? options.isLoading : params.isLoading,
-            openCustomError:
-                params.openCustomError === undefined
-                    ? options.openCustomError
-                    : params.openCustomError,
-            openExpire: params.openExpire === undefined ? options.openExpire : params.openExpire,
-            autoInteract:
-                params.autoInteract === undefined ? options.autoInteract : params.autoInteract,
-            customUrl: params.customUrl === undefined ? options.customUrl : params.customUrl,
-            useUserCacheInfo:
-                params.useUserCacheInfo === undefined
-                    ? options.useUserCacheInfo
-                    : params.useUserCacheInfo,
+        // 创建类型守卫检查对象是否为IOptions
+        const isOptions = (obj: any): obj is IOptions => obj && typeof obj === "object";
+
+        // 安全访问属性：使用可选链操作符和空值合并运算符
+        const primitive = isOptions(safeParams) ? safeParams.primitive : undefined;
+        const urlPrefix = isOptions(safeParams) ? safeParams.urlPrefix : undefined;
+        const isLoading = isOptions(safeParams) ? safeParams.isLoading : undefined;
+        const openCustomError = isOptions(safeParams) ? safeParams.openCustomError : undefined;
+        const openExpire = isOptions(safeParams) ? safeParams.openExpire : undefined;
+        const autoInteract = isOptions(safeParams) ? safeParams.autoInteract : undefined;
+        const customUrl = isOptions(safeParams) ? safeParams.customUrl : undefined;
+        const useUserCacheInfo = isOptions(safeParams) ? safeParams.useUserCacheInfo : undefined;
+        const errorExitAndCloseLoading = isOptions(safeParams)
+            ? safeParams.errorExitAndCloseLoading
+            : undefined;
+        const firstMockData = isOptions(safeParams) ? safeParams.firstMockData : undefined;
+        const backupMockData = isOptions(safeParams) ? safeParams.backupMockData : undefined;
+
+        // 构建兼容选项
+        const compatibleOptions: IOptions = {
+            primitive: primitive ?? mergedOptions.primitive,
+            urlPrefix: urlPrefix ?? mergedOptions.urlPrefix,
+            isLoading: isLoading ?? mergedOptions.isLoading,
+            openCustomError: openCustomError ?? mergedOptions.openCustomError,
+            openExpire: openExpire ?? mergedOptions.openExpire,
+            autoInteract: autoInteract ?? mergedOptions.autoInteract,
+            customUrl: customUrl ?? mergedOptions.customUrl,
+            useUserCacheInfo: useUserCacheInfo ?? mergedOptions.useUserCacheInfo,
             errorExitAndCloseLoading:
-                params.errorExitAndCloseLoading === undefined
-                    ? options.errorExitAndCloseLoading
-                    : params.errorExitAndCloseLoading,
-            firstMockData:
-                params.firstMockData === undefined ? options.firstMockData : params.firstMockData,
-            backupMockData:
-                params.backupMockData === undefined ? options.backupMockData : params.backupMockData
+                errorExitAndCloseLoading ?? mergedOptions.errorExitAndCloseLoading,
+            backupMockData: backupMockData ?? mergedOptions.backupMockData,
+            firstMockData: firstMockData ?? mergedOptions.firstMockData
         };
 
-        //判断是否未开发环境，如果不为开发环境则关闭备用服务（YAPI）
-        //backupMockData、firstMockData¬ 仅用于开发环境上使用
+        // 判断是否未开发环境，如果不为开发环境则关闭备用服务（YAPI）
+        // backupMockData、firstMockData仅用于开发环境上使用
         const devEnvCharacter = "dev";
         const notFundNumber = -1;
         if (compatibleOptions.backupMockData || compatibleOptions.firstMockData) {
@@ -244,12 +256,22 @@ class Http implements IHttp {
         params: KParams,
         options: IOptionsAndUndefined = {},
         headers = {}
-    ) {
-        //生成YAPI服务器接口链接
-        const tempRequestUrl = this.getRequestUrl(true, this.mockUrlPrefix + requestUrl, options);
-        return httpFlow<KParams, TResponse>(requestUrl, params, options, () => {
-            return httpCore.post(tempRequestUrl, params, headers);
-        }).then((data) => {
+    ): Promise<IResponseData<TResponse>> {
+        // 生成YAPI服务器接口链接
+        const tempRequestUrl = this.getRequestUrl(
+            true,
+            this.mockUrlPrefix + requestUrl,
+            this.mergeDefaultOptions(options) as IOptions
+        );
+
+        return httpFlow<KParams, IResponseData<TResponse>>(
+            requestUrl,
+            params,
+            this.mergeDefaultOptions(options),
+            () => {
+                return httpCore.post(tempRequestUrl, params, headers);
+            }
+        ).then((data) => {
             console.group(
                 `%c 备用数据源YAPI服务已成功启动！ \n 接口名称：${requestUrl} \n 服务地址：${tempRequestUrl}`,
                 "color:red;font-size:12px"
@@ -308,49 +330,63 @@ class Http implements IHttp {
         options: IOptionsAndUndefined = {},
         headers?: AxiosRequestConfig
     ): Promise<IResponseData<TResponse>> {
-        //处理空属性并给予默认值
-        params = this.disposeProps<KParams>(params);
-        options = this.disposeProps<IOptionsAndUndefined>(options);
-        //兼容老版本接口
-        options = this.compatibleOldInterface<KParams>(params, options);
-        //request url
-        const tempRequestUrl = this.getRequestUrl(options.customUrl, requestUrl, options);
+        // 处理空属性并给予默认值
+        const safeParams = this.disposeProps<KParams>(params);
+        const safeOptions = this.disposeProps<IOptionsAndUndefined>(options);
+        // 兼容老版本接口
+        const mergedOptions = this.compatibleOldInterface<KParams>(safeParams, safeOptions);
+        // request url
+        const tempRequestUrl = this.getRequestUrl(
+            mergedOptions.customUrl,
+            requestUrl,
+            mergedOptions
+        );
 
-        //优先调用mock接口数据
-        if (options.firstMockData) {
-            return this.callMockData<KParams, IResponseData<TResponse>>(
+        // 优先调用mock接口数据
+        if (mergedOptions.firstMockData) {
+            return this.callMockData<KParams, TResponse>(
                 requestUrl,
-                params,
-                options,
+                safeParams,
+                safeOptions,
                 headers
             );
         }
 
-        //备用mock数据逻辑，仅支持开发环境上使用
-        if (options.backupMockData) {
-            return httpFlow<KParams, IResponseData<TResponse>>(requestUrl, params, options, () => {
-                return httpCore.post(tempRequestUrl, params, headers);
-            }).then(
+        // 备用mock数据逻辑，仅支持开发环境上使用
+        if (mergedOptions.backupMockData) {
+            return httpFlow<KParams, IResponseData<TResponse>>(
+                requestUrl,
+                safeParams,
+                mergedOptions,
+                () => {
+                    return httpCore.post(tempRequestUrl, safeParams, headers);
+                }
+            ).then(
                 (data) => {
                     return data;
                 },
                 (errorData) => {
                     const ajax404 = 404;
-                    //开发环境调用接口失败后自动调用YAPI服务MOCK接口数据
+                    // 开发环境调用接口失败后自动调用YAPI服务MOCK接口数据
                     const zero = 0;
                     if (
                         errorData.status === ajax404 ||
                         Object.keys(errorData || {}).length === zero
                     ) {
-                        return this.callMockData(requestUrl, params, options, headers);
+                        return this.callMockData(requestUrl, safeParams, safeOptions, headers);
                     }
                     return Promise.reject(errorData);
                 }
             );
         }
-        return httpFlow<KParams, IResponseData<TResponse>>(requestUrl, params, options, () => {
-            return httpCore.post(tempRequestUrl, params, headers);
-        });
+        return httpFlow<KParams, IResponseData<TResponse>>(
+            requestUrl,
+            safeParams,
+            mergedOptions,
+            () => {
+                return httpCore.post(tempRequestUrl, safeParams, headers);
+            }
+        );
     }
 
     /**
@@ -364,17 +400,21 @@ class Http implements IHttp {
         params: AxiosRequestConfig<KParams>,
         options: IOptionsAndUndefined = {}
     ): Promise<IResponseData<TResponse>> {
-        //处理空属性并给予默认值
-        params = this.disposeProps<AxiosRequestConfig<KParams>>(params);
-        options = this.disposeProps<IOptionsAndUndefined>(options);
-        //兼容老版本接口
-        options = this.compatibleOldInterface<KParams>(
-            params as IOptionsAndUndefined | KParams,
-            options
+        // 处理空属性并给予默认值
+        const safeParams = this.disposeProps<AxiosRequestConfig<KParams>>(params);
+        const safeOptions = this.disposeProps<IOptionsAndUndefined>(options);
+        // 兼容老版本接口
+        const mergedOptions = this.compatibleOldInterface<KParams>(
+            safeParams as IOptionsAndUndefined | KParams,
+            safeOptions
         );
-        const tempRequestUrl = this.getRequestUrl(options.customUrl, requestUrl, options);
+        const tempRequestUrl = this.getRequestUrl(
+            mergedOptions.customUrl,
+            requestUrl,
+            mergedOptions
+        );
         return httpCore
-            .get<KParams, IResponseData<TResponse>>(tempRequestUrl, params)
+            .get<KParams, IResponseData<TResponse>>(tempRequestUrl, safeParams)
             .then((responseData) => {
                 return responseData.data;
             });
