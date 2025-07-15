@@ -24,6 +24,7 @@
     "antd-mobile": "^5.38.1",
     "array-move": "^4.0.0",
     "async-validator": "^4.2.5",
+    "await-to-js": "^3.0.0",
     "axios": "^1.7.7",
     "classnames": "^2.5.1",
     "compressorjs": "^1.2.1",
