@@ -90,6 +90,7 @@ userId: string;
 * 未研究
   * react19版本的学习
 * jsTest
+* vite升级成7.x
 
 
 * 问题记录
