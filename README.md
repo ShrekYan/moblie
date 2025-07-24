@@ -90,7 +90,8 @@ userId: string;
 * 未研究
   * react19版本的学习
 * jsTest
-* vite升级成7.x
+~~* vite升级成7.x（可以升级也可以不升）~~
+* import到入带尾缀？
 
 
 * 问题记录
