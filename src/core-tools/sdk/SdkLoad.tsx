@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import queryString from "query-string";
-import { PageLoading } from "react-awesome-all-component";
+import { PageLoading } from "awesome-component-owner";
 import useChannelInfo from "@/business/channel/useChannelInfo.ts";
 import useChannelMap from "@/business/channel/channelConfig/index.ts";
 import { createScript } from "./handle.ts";
