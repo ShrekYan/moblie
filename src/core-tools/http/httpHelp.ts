@@ -1,6 +1,6 @@
 import type { IOptions } from "./http.ts";
 //import purBasic from "@Tool/pureBasic/index";
-import { closeLoading } from "./httpPlug/loading.ts";
+import { closeLoading } from "./loading.ts";
 
 export interface IHttpPromiseStatusResponse<T> {
     isSuccess: boolean;

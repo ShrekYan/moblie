@@ -1,11 +1,14 @@
-import httpEnhancer from "./httpEnhancer.ts";
-import parameter from "./httpPlug/parameter.ts";
 import { httpPromiseAll, httpPromiseStatusWrap } from "./httpHelp.ts";
-import { openLoading, closeLoading } from "./httpPlug/loading.ts";
-import response from "./httpPlug/response.ts";
-import responseError from "./httpPlug/responseError.ts";
-import session from "./httpPlug/session.ts";
-import networkError from "./httpPlug/networkError.ts";
+import { closeLoading, openLoading } from "./loading.ts";
+import {
+    httpEnhancer,
+    parameter,
+    response,
+    responseError,
+    session,
+    networkError
+} from "awesome-utils-owner/http";
+import showErrorToastFn from "@core-tools/http/showErrorToast.ts";
 // import { getServerUrl } from "@Src/config";
 
 //根据不同的环境设置不同的服务器环境
@@ -13,12 +16,27 @@ const serverUrlPrefix = import.meta.env.VITE_BACK_END_SERVER;
 
 const http = new httpEnhancer(serverUrlPrefix, "http://dev-yapi.gungunqian.cn:3000/mock/37");
 
-http.addBeforePlug(parameter)
+const showErrorToast = showErrorToastFn();
+
+http.addBeforePlug(
+    parameter((data) => {
+        data.version = "5.0.0";
+        data.source = "H";
+    })
+)
     .addBeforePlug(openLoading)
     .addAfterPlug(response)
-    .addAfterPlug(responseError)
-    .addAfterPlug(session)
-    .addErrorPlug(networkError)
+    .addAfterPlug(
+        responseError((errorMsg) => {
+            showErrorToast(errorMsg);
+        })
+    )
+    .addAfterPlug(session(() => {}))
+    .addErrorPlug(
+        networkError(() => {
+            showErrorToast("网络不好，请稍后重试");
+        })
+    )
     .addFinallyPlug(closeLoading);
 
 export default http;

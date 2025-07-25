@@ -1,8 +1,9 @@
-import type { IResponseData } from "@/core-tools/http/http.ts";
+import type { IResponseData } from "awesome-utils-owner/http";
 import { useEffect, useState } from "react";
 import type { AxiosError } from "axios";
 
 /**
+ * FIX : 重复调用
  * demo:
  *     // const { data, loading, error } = useFetchByPromise(
  *     //     http.post("/v1/caribbean/queryMarketIndexs", { marketIndexScenario: "Home" })

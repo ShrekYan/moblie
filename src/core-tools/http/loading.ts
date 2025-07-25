@@ -1,4 +1,4 @@
-import type { HttpPluginOptions } from "../http.ts";
+import type { HttpPluginOptions } from "awesome-utils-owner/http";
 import loadingUtil from "./loadingUtil.tsx";
 
 export const openLoading = ({ options }: Partial<HttpPluginOptions>) => {

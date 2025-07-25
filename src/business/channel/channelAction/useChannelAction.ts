@@ -1,7 +1,7 @@
 import useChannelActionFnMap from "./useChannelActionFnMap.ts";
 import useChannelInfo from "@/business/channel/useChannelInfo.ts";
 import type { QueryProductRateRequest } from "@/types/requests/product/queryProductRate.ts";
-import type { IResponseData } from "@/core-tools/http/http.ts";
+import type { IResponseData } from "awesome-utils-owner/http";
 import type { QueryProductRateResponse } from "@/types/responses/product/queryProductRate.ts";
 
 export interface ChannelActionFnMap {
