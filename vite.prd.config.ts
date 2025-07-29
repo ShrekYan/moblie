@@ -94,7 +94,7 @@ export default (config: ConfigEnv) => {
                 "@local-types": path.resolve(__dirname, "./src/types"),
                 "@utils": path.resolve(__dirname, "./src/utils")
             },
-            extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json"]
+            extensions: [".mjs", ".js", ".jsx", ".ts", ".tsx", ".json", ".css", ".scss"]
         },
         css: {
             preprocessorOptions: {
