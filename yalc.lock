@@ -1,0 +1,22 @@
+{
+  "version": "v1",
+  "packages": {
+    "react-awesome-all-component": {
+      "signature": "224b4c4100e86a81dc5451e430f60b35",
+      "file": true,
+      "replaced": "0.0.10"
+    },
+    "@myrepo/utils": {
+      "signature": "c0efe7938fe0b54ce142f66986176dab",
+      "file": true
+    },
+    "awesome-utils": {
+      "signature": "d6184bfb1edf68d96ebbfc5d8968d854",
+      "file": true
+    },
+    "awesome-component-owner": {
+      "signature": "a9abcbc3687452c3f369c8382bffe630",
+      "file": true
+    }
+  }
+}
