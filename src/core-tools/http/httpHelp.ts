@@ -1,4 +1,4 @@
-import type { IOptions } from "./http.ts";
+import type { IOptions } from "awesome-utils-owner/http";
 //import purBasic from "@Tool/pureBasic/index";
 import { closeLoading } from "./loading.ts";
 
