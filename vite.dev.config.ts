@@ -38,7 +38,11 @@ export default (config: ConfigEnv) => {
             //     ...image(),
             //     enforce: 'pre'
             // },
-            react(),
+            react({
+                babel: {
+                    plugins: ["babel-plugin-react-compiler"]
+                }
+            }),
             viteVConsole({
                 entry: path.resolve(__dirname, "./src/main.tsx"),
                 enabled: true,

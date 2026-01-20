@@ -10,8 +10,8 @@ import classnames from "classnames";
 import ChannelAdapter from "@components/business/ChannelAdapter";
 import style from "./index.module.scss";
 import createUseEventEmitter from "@utils/event/useEventEmitter.ts";
-// import { FloatButton } from "awesome-component-owner";
-import { FloatButton } from "awesome-component-owner";
+// import FloatButton from "./../../../components/common/FloatButton/index";
+import FloatButton from "./../../../components/common/FloatButton/index";
 import PageHead from "@components/common/PageHead";
 import BottomDesc from "./components/BottomDesc";
 

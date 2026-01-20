@@ -61,7 +61,11 @@ export default (config: ConfigEnv) => {
             /*  checker({
                   typescript:true
               }),*/
-            react(),
+            react({
+                babel: {
+                    plugins: ["babel-plugin-react-compiler"]
+                }
+            }),
             //开启模块联邦不适用legacy
             legacy(),
             removeConsole(),
@@ -73,13 +77,15 @@ export default (config: ConfigEnv) => {
                 apply: "build"
             },
             //除了预发和生产环境，其他环境都打开vconsole.log
-            (config.mode !== "production" && config.mode !== "pre") ? viteVConsole({
-                entry: path.resolve(__dirname, "./src/main.tsx"),
-                enabled: true,
-                config: {
-                    theme: "dark"
-                }
-            }) : null
+            config.mode !== "production" && config.mode !== "pre"
+                ? viteVConsole({
+                      entry: path.resolve(__dirname, "./src/main.tsx"),
+                      enabled: true,
+                      config: {
+                          theme: "dark"
+                      }
+                  })
+                : null
         ],
         resolve: {
             alias: {
@@ -159,4 +165,4 @@ export default (config: ConfigEnv) => {
             // }
         }
     } as UserConfig;
-}
+};

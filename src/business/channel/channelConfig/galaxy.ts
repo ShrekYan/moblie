@@ -3,6 +3,7 @@ import type { ChannelConfig, ChannelInfo } from "@/types/common/channel/channelI
 import { ChannelInfoMap } from "@/utils/constants/enum.channel.ts";
 import useChannelInfo from "./../useChannelInfo.ts";
 import { delay } from "es-toolkit";
+import { useLocation } from "react-router-dom";
 
 /**
  * 模拟自动登录
@@ -13,6 +14,7 @@ const mockAutoLogin = () => {
 
 const useGalaxyConfig = () => {
     const localStorage = useLocalStorage();
+    void useLocation();
     const { setChannelInfo } = useChannelInfo<ChannelInfo>();
     const galaxyConfig: ChannelConfig = {
         sdk: [],
